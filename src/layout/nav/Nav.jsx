@@ -10,6 +10,7 @@ const MenuData = [
   },
   {
     title: "Services",
+    icon: "keyboard_arrow_down",
     menu_items: [
       { item_name: "Primary care", link: "https://example.com/primary-care" },
       { item_name: "Specialist consultations", link: "https://example.com/specialist-consultations" },
@@ -18,14 +19,12 @@ const MenuData = [
       { item_name: "Diagnostic imaging", link: "https://example.com/diagnostic-imaging" },
       { item_name: "Laboratory tests", link: "https://example.com/laboratory-tests" },
       { item_name: "Physical therapy", link: "https://example.com/physical-therapy" },
-      { item_name: "Mental health services", link: "https://example.com/mental-health-services" },
       { item_name: "Maternity care", link: "https://example.com/maternity-care" },
-      { item_name: "Pediatric care", link: "https://example.com/pediatric-care" },
-      { item_name: "Geriatric care", link: "https://example.com/geriatric-care" }
     ]
   },
   {
     title: "Pages",
+    icon: "keyboard_arrow_down",
     menu_items: [
       {
         item_name: "About Us",
@@ -91,15 +90,15 @@ const Nav = () => {
           <Link className="nav-logo">
             <h1>Azhar INC</h1>
           </Link>
-          <ul style={openMenu ? {display: 'flex'} : {display: 'none'}}  className="nav-menu">
+          <ul style={openMenu ? {display: "flex !important"} :{display: 'none'}}  className="nav-menu">
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
                   <Link  className="item-link" >{menu_item.title}</Link>
-                    <span className="material-symbols-outlined">keyboard_arrow_down</span>
+                    <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {
-                      itemLists && itemLists?.map((item, index) =>
+                       menu_item.menu_items?.map((item, index) =>
                       <Link className="item-link" key={index}>{item.item_name}</Link>
                     )
                   }
@@ -112,7 +111,7 @@ const Nav = () => {
           <div className="nav-action">
             <span style={openSearch ? { display: 'none' } : { display: 'block' }} onClick={() => setOpenSearch(true)} className="material-symbols-outlined action-icon">search</span>
             <span style={openSearch ? { display: 'block' } : { display: 'none' }} onClick={() => setOpenSearch(false)} className="material-symbols-outlined action-icon">close</span>
-            <form style={openSearch ? { transform: 'translateY(30%)' } : { transform: 'translateY(-200%)' }} className="search-form">
+            <form style={openSearch ? { transform: 'scale(1) translateY(30%)' } : { transform: 'scale(0) translateY(30%)', transition: '0s' }} className="search-form">
               <input className="search-input" type="text" placeholder="Search" />
               <button className="search-btn">
                 <span className="material-symbols-outlined">search</span>
@@ -123,7 +122,7 @@ const Nav = () => {
           <div className="authorization-action">
             <Link className="auth-link">Get Started</Link>
           </div>
-          <span onClick={() => setOpenMenu(!openMenu)} style={screenWidth < 930 ? {display: 'block'} : {display: 'none'}}  className="material-symbols-outlined hamburger-btn">menu</span>
+          <span onClick={() => setOpenMenu(true)}   className="material-symbols-outlined hamburger-btn">menu</span>
 
         </div>
       </Container>

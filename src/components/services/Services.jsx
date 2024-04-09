@@ -21,9 +21,6 @@ const Services = () => {
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                             </ul>
                         </div>
                     </div>
@@ -35,9 +32,6 @@ const Services = () => {
                         <p>There are many variations of pas of Lorem Ipsum availab.There are many variations of pas of Lorem Ipsum availab.</p>
                         <div className="service-box-list">
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
@@ -57,12 +51,16 @@ const Services = () => {
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                                 <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div className="service-brands">
+                    <img src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/5-2.png" alt="" />
+                    <img src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/3-4.png" alt="" />
+                    <img src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/2-4.png" alt="" />
+                    <img src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/1-2.png" alt="" />
+                    <img src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/2-3.png" alt="" />
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 30px;
         width: 100%;
-        margin: 20px auto;
+        margin: 20px auto 80px auto;
         .service-card {
             width: 100%;
             background-color: #fff;
@@ -79,24 +79,33 @@
             .service-box-list {
                 display: flex;
                 flex-direction: column;
-                margin: 10px;
-                gap: 10px;
                 ul {
                     list-style: none;
                     li {
                         display: flex;
                         align-items: center;
                         gap: 10px;
-                        padding: 0 0 8px;
+                        padding: 0 0 10px;
                         font-size: 16px;
                         color: #2d304e;
-                        font-weight: 500;
+                        font-weight: 600;
                         i {
                             color: #4b56b3;
                         }
                     }
                 }
             }
+        }
+    }
+    .service-brands {
+        border-top: 1px solid #fff;
+        padding-top: 40px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 30px;
+        img {
+            width: 100%;
         }
     }
 }

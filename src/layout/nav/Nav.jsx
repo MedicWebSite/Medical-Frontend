@@ -59,28 +59,7 @@ const Nav = () => {
   // State Hooks
   const [openSearch, setOpenSearch] = useState(false)
   const [itemLists, setItemLists] = useState("")
-  const [openMenu, setOpenMenu] = useState(true)
-  const [screenWidth, setScreenWidth] = useState(0)
-  console.log(screenWidth);
-
-
-  useEffect(() => {
-    const handleScreenWidth = () => {
-      setScreenWidth(window.innerWidth)
-    }
-      window.addEventListener('resize', handleScreenWidth)
-      return () => {
-        window.removeEventListener('resize', handleScreenWidth)
-      }
-
-  }, [])
-
-
-  useEffect(() => {
-    if(window.innerWidth < 931){
-      setOpenMenu(false)
-    } 
-  }, [window.innerWidth])
+  const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
 
 
   return (
@@ -90,18 +69,18 @@ const Nav = () => {
           <Link className="nav-logo">
             <h1>Azhar INC</h1>
           </Link>
-          <ul style={openMenu ? {display: "flex !important"} :{display: 'none'}}  className="nav-menu">
+          <ul className="nav-menu">
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
-                  <Link  className="item-link" >{menu_item.title}</Link>
-                    <span className="material-symbols-outlined">{menu_item.icon}</span>
+                  <Link className="item-link" >{menu_item.title}</Link>
+                  <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {
-                       menu_item.menu_items?.map((item, index) =>
-                      <Link className="item-link" key={index}>{item.item_name}</Link>
-                    )
-                  }
+                      menu_item.menu_items?.map((item, index) =>
+                        <Link className="item-link" key={index}>{item.item_name}</Link>
+                      )
+                    }
                   </div>
                 </li>
               )
@@ -122,10 +101,34 @@ const Nav = () => {
           <div className="authorization-action">
             <Link className="auth-link">Get Started</Link>
           </div>
-          <span onClick={() => setOpenMenu(true)}   className="material-symbols-outlined hamburger-btn">menu</span>
+          <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
 
+
+
+         
         </div>
       </Container>
+       {/* Responsive menu */}
+       <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
+            {
+              MenuData.map((item, index) =>
+                <li className="menu-item">
+                  <Link className="item-link">{item.title} <span className="material-symbols-outlined"> {item.icon}</span></Link>
+                  <div className="item-subitem">
+                    {
+                      item?.menu_items?.map((subitem, index) =>
+                        <Link className="subitem-link">{subitem.item_name}</Link>
+                      )
+                    }
+                  </div>
+                </li>
+              )
+            }
+            <div className="responsive-auth">
+              <Link className="login-link">Login</Link>
+              <Link className="register-link">Register</Link>
+            </div>
+          </ul>
     </nav>
   )
 }

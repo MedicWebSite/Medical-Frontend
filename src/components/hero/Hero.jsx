@@ -6,16 +6,11 @@ const Hero = () => {
   return (
     <div className="hero">
 
-    <div class="video-container">
-    <video autoPlay muted >
-      <source src={BannerVideo} type="video/mp4" />
-    </video>
-  </div>
-    <div class="video-container">
-    <video autoPlay muted >
-      <source src={BannerVideo} type="video/mp4" />
-    </video>
-  </div>
+      <div class="banner-video">
+        <video autoPlay muted loop >
+          <source src={BannerVideo} type="video/mp4" />
+        </video>
+      </div>
     </div>
   )
 }

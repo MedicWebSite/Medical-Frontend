@@ -6,10 +6,10 @@ import Portfolio from '../../components/portfolio/Portfolio'
 const Home = () => {
   return (
     <div>
-      <Hero />
-      <Hero />
+      <Hero/>
       <Services />
       <Portfolio />
+
     </div>
   )
 }

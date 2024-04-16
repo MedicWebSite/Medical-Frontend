@@ -1,7 +1,8 @@
 .services {
     width: 100%;
-    position: absolute;
-    top: 90vh;
+    position: relative;
+    // top: 90vh;
+    margin-top: -220px;
     padding: 100px 0 90px;
     background-color: #4b56b3;
     .services-sub {

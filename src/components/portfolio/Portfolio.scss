@@ -30,7 +30,8 @@
     }
 }
 .slick-slide {
-    width: 340px !important;
+    max-width: 340px !important;
+    width: 100%;
     height: 400px !important;
     margin-right: 30px;
 }
@@ -43,6 +44,23 @@
 }
 
 .slick-next,
-.slick-next {
+.slick-prev {
     display: none !important;
+}
+
+@media only screen and (max-width: 948px) {
+    .portfolio {
+        padding: 0px 10px 40px 10px;
+        .portfolio-title {
+            h1 {
+                font-size: 40px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 672px) {
+}
+
+@media only screen and (max-width: 490px) {
 }

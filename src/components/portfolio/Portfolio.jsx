@@ -21,28 +21,28 @@ const Portfolio = () => {
             <div className="slider-portfolio">
                 <div className="slider-container">
                     <Slider {...settings}>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/1-1-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/2-2-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/3-1-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/4-2-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/5-2-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/6-2-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/7-2-600x700.jpg" alt="" />
                         </div>
-                        <div>
+                        <div className='slider-div'>
                             <img className='slider-img' src="https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/8-2-600x700.jpg" alt="" />
                         </div>
                     </Slider>

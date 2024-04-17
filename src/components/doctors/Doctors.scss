@@ -1,8 +1,12 @@
+.doctors-wrapper{
+    margin-top: 5rem;
+    background: #F6F7F5;
+    padding: 3rem 0;
+}
 .doctors {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-    flex-wrap: wrap;
 }
 
 .our-team {
@@ -28,15 +32,13 @@
 
 .doctor-info {
     position: relative;
-    width: 403px;
-    height: 503px;
+    max-width: 380px;
+    width: 100%;
     overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.doctor-info:hover > .doc-soc-hover {
-    top: 0;
-    opacity: 1;
-}
+
 
 .doctors-img {
     width: 100%;
@@ -48,6 +50,8 @@
     text-align: center;
     padding: 20px 15px;
     width: 100%;
+    transition: .2s;
+    background-color: var(--light-color);
 }
 
 .text-hover {
@@ -78,27 +82,34 @@
     letter-spacing: 1px;
     margin-top: 8px;
     text-transform: uppercase;
-    transition: 0.5s;
+    transition: 0.8s;
 }
 
 .doctor-info:hover > .doctor-text > .doc-text-hover {
     color: #fff;
 }
+.doctor-info:hover > .doc-soc-hover {
+    top: 0;
+    opacity: 1;
+}
+.doctor-info:hover .doctor-text{
+    background-color: var(--primary-dark-color);
+}
 
 .doctors-socials {
     display: flex;
     flex-direction: column;
-    background-color: var(--primary-dark-color);
-    width: 60px;
-    gap: 40px;
     align-items: center;
+    background-color: var(--primary-dark-color);
+    width: 56px;
+    row-gap: 40px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     position: absolute;
-    top: -140px;
-    right: 15px;
-    opacity: 0;
+    top: -100%;
+    right: 10px;
     transition: 0.5s;
+    padding: 1.7rem 0;
 }
 
 .doctors-social {
@@ -106,10 +117,145 @@
     font-size: 18px;
 }
 
-.doctors-social:first-child {
-    margin-top: 25px;
+
+
+
+// RESPONSIVE STYLES
+
+@media only screen and (max-width:1024px){
+    .doctor-info {
+        max-width: 300px !important;
+    }
 }
 
-.doctors-social:last-child {
-    margin-bottom: 25px;
+@media only screen and (max-width:972px){
+    .doctor-info {
+        max-width: 290px !important;
+    }
+    .doctors-img{
+        height: 320px;
+    }
 }
+
+@media only screen and (max-width:876px) {
+        .doctors{
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+            row-gap: 1.5rem;
+        }
+        .doctor-info {
+            max-width: 350px !important;
+        }
+        .doctors-img{
+            height: 370px;
+        }
+}
+
+
+
+@media only screen and (max-width:638px){
+    .doctors-img{
+        height: 320px;
+    }
+    .doctors-socials {
+        width: 43px;
+        right: 5px;
+        row-gap: 32px;
+        padding: 1.5rem 0;
+    }
+    .doctor-name {
+        font-size: 20px;
+    }
+    .doctor-job{
+        font-size: 12px;
+    }
+    
+}
+
+@media only screen and (max-width:484px){
+   .doctors-team{
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+   }
+    .doctors-img{
+        height: 280px;
+    }
+    .doctors-socials {
+        width: 40px;
+        right: 5px;
+        row-gap: 32px;
+        padding: 1.3rem 0;
+    }
+    .doctor-name {
+        font-size: 18px;
+    }
+    .doctor-job{
+        font-size: 12px;
+    }
+    .doctor-text {
+        padding: 14px 15px;
+    }
+    
+}
+
+@media only screen and (max-width:410px){
+    .doctors-team{
+     font-size: 28px;
+     margin-bottom: 1.5rem;
+    }
+     .doctors-img{
+         height: 250px;
+     }
+     .doctors-socials {
+         width: 34px;
+         right: 5px;
+         row-gap: 26px;
+         padding: 1.3rem 0;
+         .doctors-social{
+            font-size: 15px;
+         }
+     }
+
+     .doctor-name {
+         font-size: 16px;
+     }
+     .doctor-job{
+         font-size: 11px;
+         letter-spacing: .5px;
+     }
+     .doctor-text {
+         padding: 14px 15px;
+     }
+     
+ }
+
+ @media only screen and (max-width:368px){
+    .doctors-team{
+     font-size: 26px;
+     margin-bottom: 1.5rem;
+    }
+     .doctors-img{
+         height: 240px;
+     }
+     .doctors-socials {
+         width: 34px;
+         right: 5px;
+         row-gap: 26px;
+         padding: 1.3rem 0;
+         .doctors-social{
+            font-size: 15px;
+         }
+     }
+
+     .doctor-text {
+         padding: 12px 10px;
+     }
+     .doctor-name {
+         font-size: 14px;
+     }
+     .doctor-job{
+         font-size: 10px;
+         letter-spacing: .5px;
+     }
+     
+ }

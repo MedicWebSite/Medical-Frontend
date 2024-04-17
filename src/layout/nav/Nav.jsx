@@ -1,6 +1,6 @@
 import "./Nav.scss"
 import Container from '../../utils/Utils'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 
@@ -61,8 +61,10 @@ const Nav = () => {
   const [itemLists, setItemLists] = useState("")
   const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
 
+  const {pathname} = useLocation()
 
-  return (
+
+  return pathname.includes("/auth") ? null : (
     <nav>
       <Container>
         <div className="nav-wrapper">
@@ -99,7 +101,7 @@ const Nav = () => {
           </div>
 
           <div className="authorization-action">
-            <Link className="auth-link">Get Started</Link>
+            <Link to={'/auth/login'} className="auth-link">Get Started</Link>
           </div>
           <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
 

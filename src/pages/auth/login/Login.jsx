@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ApiInstance from '../../../api'
 import { Link } from 'react-router-dom'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,7 +38,7 @@ const Login = () => {
                         <Link to={'/auth/register'} className='check-link'>Register</Link>
                     </p>
                     <GoogleOAuthProvider clientId='617896106948-fncnrakj6bigf7u0kig605jifcfll205.apps.googleusercontent.com'>
-                            <GoogleLogin
+                        <GoogleLogin
                             onSuccess={credentialResponse => {
                                 console.log(credentialResponse);
                             }}
@@ -48,13 +49,22 @@ const Login = () => {
                             theme='filled_blue'
                             context='contin_with'
                             locale='english'
-                            // type='icon'
+                            type='icon'
                             shape='circle'
                             ux_mode='popup'
                             width={480}
                             logo_alignment='left'
-                            />
+                        />
                     </GoogleOAuthProvider>
+                    <FacebookLogin
+                        appId="1088597931155576"
+                        autoLoad
+                        
+                        // callback={responseFacebook}
+                        render={renderProps => (
+                            <button onClick={renderProps.onClick}>This is my custom FB button</button>
+                        )}
+                    />
                 </form>
             </div>
         </div>

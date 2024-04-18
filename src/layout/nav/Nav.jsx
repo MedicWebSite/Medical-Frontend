@@ -60,6 +60,9 @@ const Nav = () => {
   const [openSearch, setOpenSearch] = useState(false)
   const [itemLists, setItemLists] = useState("")
   const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
+  const [openSubitems, setOpenSubitems] = useState(false)
+
+  console.log(openResponsiveMenu);
 
   const {pathname} = useLocation()
 
@@ -103,6 +106,10 @@ const Nav = () => {
           <div className="authorization-action">
             <Link to={'/auth/login'} className="auth-link">Get Started</Link>
           </div>
+          <Link className="responsive-auth">
+          <span className="material-symbols-outlined">person</span>
+            <strong>Sign in</strong>
+          </Link>
           <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
 
 
@@ -114,9 +121,12 @@ const Nav = () => {
        <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
             {
               MenuData.map((item, index) =>
-                <li className="menu-item">
-                  <Link className="item-link">{item.title} <span className="material-symbols-outlined"> {item.icon}</span></Link>
-                  <div className="item-subitem">
+                <li key={index} className="menu-item">
+                  <Link onClick={() => setOpenSubitems(!openSubitems)}  className="item-link">
+                    {item.title}
+                     <span className="material-symbols-outlined"> {item.icon}</span>
+                     </Link>
+                  <div  className="item-subitem">
                     {
                       item?.menu_items?.map((subitem, index) =>
                         <Link className="subitem-link">{subitem.item_name}</Link>
@@ -126,10 +136,7 @@ const Nav = () => {
                 </li>
               )
             }
-            <div className="responsive-auth">
-              <Link className="login-link">Login</Link>
-              <Link className="register-link">Register</Link>
-            </div>
+            
           </ul>
     </nav>
   )

@@ -60,6 +60,7 @@
     justify-content: center;
     column-gap: 2.5rem;
     margin-top: 2rem;
+    z-index: 10 !important;
     .content-link{
         padding: 0.8rem 2rem;
         color: var(--light-color);
@@ -69,12 +70,17 @@
         border-radius: 5px;
         background-color: var(--primary-light-color);
         transition: .2s;
-        &:hover{
-            background-color: #59aef3;
-        }
+        cursor: pointer;
+     
     }
 }
 
+
+.hero-content .content-links  .content-link:hover{
+    display: none;
+    background-color: #1f415e !important;
+
+}
 
 // RESPONSIVE STYLES
 @media only screen and (max-width: 1152px ){

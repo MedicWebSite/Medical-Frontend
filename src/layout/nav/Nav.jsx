@@ -61,6 +61,20 @@ const Nav = () => {
   const [itemLists, setItemLists] = useState("")
   const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
   const [openSubitems, setOpenSubitems] = useState(false)
+  const [fixedNav, setFixedNav] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+
+
+  const UpdateScrollPosition = () => {
+    setScrollY(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', UpdateScrollPosition )
+    return () => {
+      window.removeEventListener('scroll', UpdateScrollPosition)
+    }
+  }, [])
 
   console.log(openResponsiveMenu);
 
@@ -68,7 +82,7 @@ const Nav = () => {
 
 
   return pathname.includes("/auth") ? null : (
-    <nav>
+    <nav className={scrollY > 40 ? 'nav-fixed' : '' } >
       <Container>
         <div className="nav-wrapper">
           <Link className="nav-logo">

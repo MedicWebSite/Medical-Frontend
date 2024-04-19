@@ -1,0 +1,192 @@
+.contact-us {
+    margin-top: 1rem;
+}
+
+
+    .contact-banner{
+        width: 100%;
+        height: 530px;
+        position: relative;
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+            filter: blur(5px);
+            
+        }
+    }
+
+    .contact__banner-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.363);
+        
+    }
+
+    .contact__banner-content{
+        position: absolute;
+        bottom: 30%;
+        left: 6%;
+        z-index: 10;
+        h3{
+            display: flex;
+            color: var(--light-color);
+            font-size: 68px;
+            font-weight: 900 !important;
+            letter-spacing: 2px;
+            line-height: 90px;
+         
+            &::first-line{
+                font-size: 69px;
+            }
+        }
+    }
+
+.contact__card-wrapper {
+    margin-top: 6.5rem;
+    width: 100%;
+    display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.contact-card {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 8px;
+    height: 320px;
+    background-color: #F4F6F9;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    padding: 10px 14px;
+    transition: .3s;
+
+    span {
+        background-color: var(--primary-dark-color);
+        background-color: #2490EB;
+        color: var(--light-color);
+        border-radius: 6px;
+        padding: 1.6rem 1.8rem;
+        font-size: 40px;
+    }
+
+    h4 {
+        margin-top: 1rem;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    p {
+        margin-top: 10px;
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 500;
+        text-align: center;
+        color: var(--secondary-light-color);
+    }
+}
+
+.contact-card:hover {
+    background-color: var(--primary-dark-color);
+    background-color: #2490EB;
+    cursor: pointer;
+    transform: scale(1.02);
+    span{
+        background-color: var(--light-color);
+        color: var(--primary-dark-color);
+    }
+    h4,p{
+        color: var(--light-color);
+    }
+}
+
+
+
+.getintouch-wrapper{
+    border-radius: 6px;
+    max-width: 1000px;
+    padding: 3rem 1.2rem;
+    width: 100%;
+    margin: 5rem auto 5rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    .contact-subtitle{
+        background-color: #D3E9FB;
+        max-width: 140px;
+        margin: auto;
+        font-weight: 600;
+        border-radius: 2px;
+        padding: 5px 1px;
+        color: var(--primary-dark-color);
+        text-align: center;
+    }
+    .contact-title{
+        text-align: center;
+        font-size: 44px;
+        font-weight: 600;
+        margin-top: 1.5rem;
+    }
+}
+
+.contact-form{
+    max-width: 870px;
+    margin: 2rem auto 0;
+    width: 100%;
+    .input-item{
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 1.5rem;
+        input{
+            flex-grow: 1;
+            height: 60px;
+            font-size: 18px;
+            font-weight:500;
+            border-radius: 6px;
+            border: none;
+            text-indent: 10px;
+            color: var(--dark-color);
+            outline-color: #2490EB;
+            background-color: #f1f5f8;
+        }
+        
+    }
+    .form-description{
+        width: 100%;
+        height: 250px;
+        font-size: 18px;
+        padding: 20px;
+        font-weight:500;
+        border-radius: 6px;
+        border: none;
+        text-indent: 10px;
+        resize: none;
+        color: var(--dark-color);
+        outline-color: #2490EB;
+        background-color: #f1f5f8;
+        
+    }
+    .send__message-btn{
+        margin-top: 1.2rem;
+        max-width: 200px;
+        width: 100%;
+        padding: 1rem 0;
+        background-color: #2490EB;
+        color: var(--light-color);
+        border: none;
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 6px;
+        transition: .2s;
+        &:hover{
+            opacity: 0.7;
+            cursor: pointer;
+            transform: scale(1.02);
+        }
+    }
+}

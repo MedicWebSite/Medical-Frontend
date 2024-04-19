@@ -2,7 +2,24 @@ import React, { useState } from 'react'
 import ApiInstance from '../../../api'
 import { Link } from 'react-router-dom'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { LoginSocialFacebook } from 'reactjs-social-login'
+import { FacebookLoginButton, TelegramLoginButton, createButton } from 'react-social-login-buttons'
+import { BsFacebook } from 'react-icons/bs'
+
+const config = {
+    icon: BsFacebook,
+    style: {
+        background: '#3b5999',
+        width: '43px',
+        height: '40px',
+        padding: '9px',
+        borderRadius: '50%',
+
+    }
+}
+
+const FacebookLoginButtons = createButton(config)
+
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,6 +54,8 @@ const Login = () => {
                         If you don't have an account?
                         <Link to={'/auth/register'} className='check-link'>Register</Link>
                     </p>
+                    <div className="register-socials">
+
                     <GoogleOAuthProvider clientId='617896106948-fncnrakj6bigf7u0kig605jifcfll205.apps.googleusercontent.com'>
                         <GoogleLogin
                             onSuccess={credentialResponse => {
@@ -56,15 +75,22 @@ const Login = () => {
                             logo_alignment='left'
                         />
                     </GoogleOAuthProvider>
-                    <FacebookLogin
-                        appId="1088597931155576"
-                        autoLoad
-                        
-                        // callback={responseFacebook}
-                        render={renderProps => (
-                            <button onClick={renderProps.onClick}>This is my custom FB button</button>
-                        )}
-                    />
+                    {/* FACEBOOK LOGIN */}
+                    <LoginSocialFacebook
+                        appId='678828277643445'
+                            fields='id'
+                        onResolve={(response) => {
+                            console.log(response);
+                        }}
+                        onReject={(error) => {
+                            console.log(error);
+                        }}
+                    >
+                        <FacebookLoginButtons
+                        />
+                    </LoginSocialFacebook>
+                    </div>
+
                 </form>
             </div>
         </div>

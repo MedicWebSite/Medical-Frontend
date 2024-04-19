@@ -49,7 +49,8 @@ const MenuData = [
     ]
   },
   {
-    title: "Contact Us"
+    title: "Contact Us",
+    route_link: 'contact-us'
   }
 ]
 
@@ -92,7 +93,7 @@ const Nav = () => {
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
-                  <Link className="item-link" >{menu_item.title}</Link>
+                  <Link to={menu_item.route_link} className="item-link" >{menu_item.title}</Link>
                   <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {
@@ -120,7 +121,7 @@ const Nav = () => {
           <div className="authorization-action">
             <Link to={'/auth/login'} className="auth-link">Get Started</Link>
           </div>
-          <Link className="responsive-auth">
+          <Link to={'/auth/login'} className="responsive-auth">
           <span className="material-symbols-outlined">person</span>
             <strong>Sign in</strong>
           </Link>

@@ -2,6 +2,26 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ApiInstance from '../../../api'
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
+import { FacebookLoginButton, TelegramLoginButton, createButton } from 'react-social-login-buttons'
+import { BsFacebook } from 'react-icons/bs'
+import { LoginSocialFacebook } from 'reactjs-social-login'
+
+
+const config = {
+    icon: BsFacebook,
+    style: {
+        background: '#3b5999',
+        width: '43px',
+        height: '40px',
+        padding: '9px',
+        borderRadius: '50%',
+
+    }
+}
+
+const FacebookLoginButtons = createButton(config)
+
+
 
 const Register = () => {
     const [firstname, setFirstname] = useState('')
@@ -52,25 +72,42 @@ const Register = () => {
                     Already have an account?
                     <Link to={'/auth/login'} className='check-link'>Login</Link>
                 </p>
-                <GoogleOAuthProvider clientId='617896106948-fncnrakj6bigf7u0kig605jifcfll205.apps.googleusercontent.com'>
-                    <GoogleLogin
-                        onSuccess={credentialResponse => {
-                            console.log(credentialResponse);
+                <div className="register-socials">
+
+                    <GoogleOAuthProvider clientId='617896106948-fncnrakj6bigf7u0kig605jifcfll205.apps.googleusercontent.com'>
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                console.log(credentialResponse);
+                            }}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                            size='large'
+                            theme='filled_blue'
+                            context='contin_with'
+                            locale='english'
+                            type='icon'
+                            shape='circle'
+                            ux_mode='popup'
+                            width={480}
+                            logo_alignment='left'
+                        />
+                    </GoogleOAuthProvider>
+                    {/* FACEBOOK LOGIN */}
+                    <LoginSocialFacebook
+                        appId='678828277643445'
+                        fields='id'
+                        onResolve={(response) => {
+                            console.log(response);
                         }}
-                        onError={() => {
-                            console.log('Login Failed');
+                        onReject={(error) => {
+                            console.log(error);
                         }}
-                        size='large'
-                        theme='filled_blue'
-                        context='contin_with'
-                        locale='english'
-                        // type='icon'
-                        shape='circle'
-                        ux_mode='popup'
-                        width={'480px'}
-                        logo_alignment='left'
-                    />
-                </GoogleOAuthProvider>
+                    >
+                        <FacebookLoginButtons
+                        />
+                    </LoginSocialFacebook>
+                </div>
             </form>
         </div>
     )

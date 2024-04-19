@@ -4,7 +4,7 @@ nav {
     padding: 15px 8px;
     left: 0;
     position: sticky;
-    z-index: 1;
+    z-index: 30;
     background-color: var(--light-color) !important;
 }
 .nav-fixed{
@@ -218,7 +218,7 @@ nav {
     &:hover{
         background-color: var(--primary-dark-color);
         color: var(--light-color);
-        strong{
+        strong, span{
             color: var(--light-color);
         }
     }

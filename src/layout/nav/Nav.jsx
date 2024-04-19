@@ -1,6 +1,6 @@
 import "./Nav.scss"
 import Container from '../../utils/Utils'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 
@@ -49,7 +49,8 @@ const MenuData = [
     ]
   },
   {
-    title: "Contact Us"
+    title: "Contact Us",
+    route_link: 'contact-us'
   }
 ]
 
@@ -60,10 +61,29 @@ const Nav = () => {
   const [openSearch, setOpenSearch] = useState(false)
   const [itemLists, setItemLists] = useState("")
   const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
+  const [openSubitems, setOpenSubitems] = useState(false)
+  const [fixedNav, setFixedNav] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
 
 
-  return (
-    <nav>
+  const UpdateScrollPosition = () => {
+    setScrollY(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', UpdateScrollPosition )
+    return () => {
+      window.removeEventListener('scroll', UpdateScrollPosition)
+    }
+  }, [])
+
+  console.log(openResponsiveMenu);
+
+  const {pathname} = useLocation()
+
+
+  return pathname.includes("/auth") ? null : (
+    <nav className={scrollY > 40 ? 'nav-fixed' : '' } >
       <Container>
         <div className="nav-wrapper">
           <Link className="nav-logo">
@@ -73,7 +93,7 @@ const Nav = () => {
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
-                  <Link className="item-link" >{menu_item.title}</Link>
+                  <Link to={menu_item.route_link} className="item-link" >{menu_item.title}</Link>
                   <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {
@@ -99,8 +119,12 @@ const Nav = () => {
           </div>
 
           <div className="authorization-action">
-            <Link className="auth-link">Get Started</Link>
+            <Link to={'/auth/login'} className="auth-link">Get Started</Link>
           </div>
+          <Link to={'/auth/login'} className="responsive-auth">
+          <span className="material-symbols-outlined">person</span>
+            <strong>Sign in</strong>
+          </Link>
           <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
 
 
@@ -112,9 +136,12 @@ const Nav = () => {
        <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
             {
               MenuData.map((item, index) =>
-                <li className="menu-item">
-                  <Link className="item-link">{item.title} <span className="material-symbols-outlined"> {item.icon}</span></Link>
-                  <div className="item-subitem">
+                <li key={index} className="menu-item">
+                  <Link onClick={() => setOpenSubitems(!openSubitems)}  className="item-link">
+                    {item.title}
+                     <span className="material-symbols-outlined"> {item.icon}</span>
+                     </Link>
+                  <div  className="item-subitem">
                     {
                       item?.menu_items?.map((subitem, index) =>
                         <Link className="subitem-link">{subitem.item_name}</Link>
@@ -124,10 +151,7 @@ const Nav = () => {
                 </li>
               )
             }
-            <div className="responsive-auth">
-              <Link className="login-link">Login</Link>
-              <Link className="register-link">Register</Link>
-            </div>
+            
           </ul>
     </nav>
   )

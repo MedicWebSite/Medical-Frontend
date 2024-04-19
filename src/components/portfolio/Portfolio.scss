@@ -1,42 +1,101 @@
 .portfolio {
     width: 100%;
-    position: relative;
-    // top: 20vh;
     padding: 80px 0;
-    background-color: #4b56b3;
+    background: url('https://img2.akspic.ru/attachments/crops/4/3/6/8/28634/28634-grafika-sinij_cvet-lazur-upravlenie-biznes-3840x2160.jpg');
+    background-size: cover;
+    height: 500px;
+}
+
+.portfolio__header-title {
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+
+    .portfolio-subtitle {
+        background-color: #fff;
+        margin-bottom: 15px;
+        display: inline-block;
+        padding: 4px 8px;
+        font-size: 14px;
+        border-radius: 3px;
+        color: #4b56b3;
+    }
+
     .portfolio-title {
+        color: #fff;
+        font-weight: 600;
+        font-size: 48px;
+        z-index: 9;
+        display: block;
+    }
+}
+
+.slider-container {
+    display: flex !important;
+    align-items: center;
+    margin-top: 2rem;
+    column-gap: 1rem !important;
+
+    img {
         width: 100%;
-        display: grid;
-        place-items: center;
-        margin-bottom: 40px;
-        h3 {
-            background-color: #fff;
-            margin-bottom: 15px;
-            padding: 4px 8px;
-            font-size: 14px;
-            border-radius: 3px;
-            color: #4b56b3;
-        }
-        h1 {
-            color: #fff;
-            font-weight: 600;
-            font-size: 48px;
-            line-height: 56px;
-            z-index: 9;
-            padding: 0;
-            margin: 0 0;
-            position: relative;
-            display: block;
-            margin-bottom: 20px;
+        max-width: 296px;
+        height: 345px;
+        border-radius: 7px;
+    }
+}
+
+// Responsive styles
+
+@media only screen and (max-width:800px) {
+    .portfolio__header-title {
+        .portfolio-title {
+            font-size: 40px;
         }
     }
 }
-.slider-img {
-    width: 340px;
-    height: 400px;
+
+@media only screen and (max-width:672px) {
+    .portfolio__header-title {
+        .portfolio-title {
+            font-size: 34px;
+        }
+    }
 }
 
-.slick-next,
-.slick-next {
-    display: none !important;
+@media only screen and (max-width:544px) {
+    .portfolio__header-title {
+        .portfolio-title {
+            font-size: 28px;
+        }
+    }
+}
+@media only screen and (max-width:453px) {
+    .portfolio__header-title {
+        .portfolio-title {
+            font-size: 24px;
+        }
+    }
+    .slider-container{
+        img{
+            max-width: 270px;
+            height: 300px;
+        }
+    }
+}
+@media only screen and (max-width:393px) {
+    .portfolio__header-title {
+        .portfolio-subtitle{
+            font-size: 12px;
+        }
+        .portfolio-title {
+            font-size: 20px;
+        }
+
+    }
+    .slider-container{
+        img{
+            max-width: 250px;
+            height: 260px;
+        }
+    }
 }

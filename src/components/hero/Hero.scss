@@ -2,7 +2,9 @@
     width: 100%;
     position: relative;
     // display: none;
-    z-index: -1;
+    // z-index: 1;
+    display: inline-block;
+    margin-top: 3.5rem;
 }
 
 .banner-video {
@@ -14,7 +16,7 @@
 
 .banner-image{
     width: 100%;
-    height: 570px;
+    height: 560px;
     object-fit: cover;
     position: relative !important;
 }
@@ -32,10 +34,10 @@
 
 .hero-content{
     position: absolute ;
-    top: 20%;
+    top: 23%;
     left: 25%;
     text-align: center;
-    z-index: 10;
+    z-index: 5 !important;
     .content-subtitle{
         width: fit-content;
         margin: auto;
@@ -78,8 +80,7 @@
 
 
 .hero-content .content-links  .content-link:hover{
-    display: none;
-    background-color: #1f415e !important;
+    background-color: #60aef3 !important;
 
 }
 

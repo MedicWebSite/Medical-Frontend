@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ContactUs.scss'
 import Container from '../../utils/Utils'
 import { BiLocationPlus } from 'react-icons/bi'
 
 import Iframe from 'react-iframe'
+import { useLocation } from 'react-router-dom'
 
 
 const ContactUs = () => {
+
+    const {pathname} = useLocation()
+
+
+    useEffect(() => {
+        if(pathname.includes('contact-us')){
+            window.scrollTo(0,0)
+        }
+    }, [pathname])
+
     return (
         <div className='contact-us'>
             <div className="contact-banner">
@@ -24,23 +35,23 @@ const ContactUs = () => {
 
 
                 <div className="contact__card-wrapper">
-                    <div className="contact-card">
+                    <a href='#location' className="contact-card">
                         <span className='material-symbols-outlined'>location_on </span>
                         <h4>Our Location</h4>
                         <p>
                             Uzbekistan, Tashkent, Chilonzor 1-mavze
                         </p>
-                    </div>
-                    <div className="contact-card">
+                    </a>
+                    <a href='tel:+998-78-777-77-77' className="contact-card">
                         <span className='material-symbols-outlined'>call </span>
                         <h4>Our Contact</h4>
-                        <p>   +998-78-777-77-77</p>
-                    </div>
-                    <div className="contact-card">
+                        <p>+998-78-777-77-77</p>
+                    </a>
+                    <a href='mailto:medicine@gmail.com' className="contact-card">
                         <span className='material-symbols-outlined'>mark_email_unread </span>
                         <h4>Mail Us</h4>
                         <p> medicine@gmail.com</p>
-                    </div>
+                    </a>
                 </div>
 
 
@@ -63,11 +74,11 @@ const ContactUs = () => {
 
             </Container>
             <Iframe
-                url="https://maps.google.com/maps?q=Tashkent%20Dates%10Products&amp;t=&amp;z=12&amp;output=embed"
-                width="100%"
-                height="470"
+                url="https://maps.google.com/maps?q=NajotTalim%20Dates%10Products&amp;t=&amp;z=12&amp;output=embed"
                 allowFullScreen
                 frameBorder="0"
+                id='location'
+                className='iframe-map'
             />
         </div>
     )

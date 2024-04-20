@@ -78,7 +78,7 @@ const Hero = () => {
                     <p data-aos={image.aos_style} data-aos-delay="100" data-aos-duration='1000' className="content-subtitle">{image.subtitle}</p>
                     <h2 data-aos={image.aos_style} data-aos-delay="500" data-aos-duration='1000' className='content-title'>{image.main_title}</h2>
                     <div data-aos={image.aos_style} data-aos-delay="1000" data-aos-duration='1000' className="content-links">
-                      <Link to={'contact'} className='content-link' >CONTACT US &nbsp; + </Link>
+                      <Link to={'contact-us'} className='content-link' >CONTACT US &nbsp; + </Link>
                       <Link className='content-link' >READ MORE &nbsp; +</Link>
                     </div>
                   </div>

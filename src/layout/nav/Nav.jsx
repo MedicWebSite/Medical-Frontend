@@ -1,16 +1,18 @@
 import "./Nav.scss"
 import Container from '../../utils/Utils'
-import { Link, useLocation } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 
 const MenuData = [
   {
     title: "Home",
+    route_link: "/"
   },
   {
     title: "Services",
     icon: "keyboard_arrow_down",
+    route_link: 'services',
     menu_items: [
       { item_name: "Primary care", link: "https://example.com/primary-care" },
       { item_name: "Specialist consultations", link: "https://example.com/specialist-consultations" },
@@ -25,6 +27,7 @@ const MenuData = [
   {
     title: "Pages",
     icon: "keyboard_arrow_down",
+    route_link: 'pages',
     menu_items: [
       {
         item_name: "About Us",
@@ -93,7 +96,7 @@ const Nav = () => {
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
-                  <Link to={menu_item.route_link} className="item-link" >{menu_item.title}</Link>
+                  <NavLink to={menu_item.route_link} className={({isActive}) => isActive ? "item-link item-link--active" : "item-link"} >{menu_item.title}</NavLink>
                   <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {

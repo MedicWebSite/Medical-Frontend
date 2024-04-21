@@ -4,13 +4,13 @@ import Slider from 'react-slick';
 
 
 const SliderData = [
-   'https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/1-1-600x700.jpg',
-   'https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/2-2-600x700.jpg',
-   "https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/3-1-600x700.jpg",
-   "https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/4-2-600x700.jpg",
-   "https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/5-2-600x700.jpg",
-   "https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/7-2-600x700.jpg",
-   "https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2021/12/8-2-600x700.jpg"
+    "https://i.ytimg.com/vi/3DkPN9UDte0/maxresdefault.jpg",
+   'https://st2.depositphotos.com/1010613/10979/i/950/depositphotos_109796118-stock-photo-group-of-doctors-looking-at.jpg',
+   'hhttps://nasrf.ru/upload/iblock/dab/dabb9b5820a8be616180aecb5f8484e8.jpg',
+   "https://i-zdrav.ru/upload/iblock/73d/73d7f27abb8f3b15146d5c241b89560d.jpg",
+   "hhttps://rkob.ru/images/After-Hours-Clinics-Wesley-Chapel-FL.webp",
+   "https://s0.rbk.ru/v6_top_pics/media/img/4/75/756799902341754.webp",
+   "https://gas-kvas.com/grafic/uploads/posts/2023-09/1695968152_gas-kvas-com-p-kartinki-vracha-44.jpg"
    
 ]
 

@@ -38,8 +38,9 @@
 
     img {
         width: 100%;
-        max-width: 296px;
+        max-width: 305px;
         height: 345px;
+        object-fit: cover;
         border-radius: 7px;
     }
 }

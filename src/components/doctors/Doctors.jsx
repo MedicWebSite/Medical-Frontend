@@ -16,17 +16,17 @@ const Doctors = () => {
 
     const data = [
         {
-            img: 'https://medicate.peacefulqode.com/wp-content/uploads/2022/02/1-2.jpg',
+            img: 'https://i.pinimg.com/originals/b1/25/92/b1259284e51650f2fe7c79705a22dbf4.jpg',
             name: 'Alex Jhon Martin',
             job: 'Outpatient Surgery'
         },
         {
-            img: 'https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/2.png',
+            img: 'https://media.baamboozle.com/uploads/images/10544/1569603188_186887',
             name: 'Alex Jhon Martin',
             job: 'Outpatient Surgery'
         },
         {
-            img: 'https://medicate.peacefulqode.com/surgery/wp-content/uploads/sites/8/2022/06/4.png',
+            img: 'https://img.freepik.com/premium-photo/laptop_1098-10597.jpg?w=1800',
             name: 'Alex Jhon Martin',
             job: 'Outpatient Surgery'
         },

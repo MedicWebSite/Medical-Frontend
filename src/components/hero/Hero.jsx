@@ -7,19 +7,20 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Aos from 'aos';
 import { Link } from 'react-router-dom';
+import HeroFeature from '../hero-feature/HeroFeature';
 
 const Hero = () => {
 
 
   const [BannerImages, setBannerImages] = useState([
     {
-      banner_img: 'https://images.thequint.com/thequint%2F2018-12%2Ff0a900f4-4bc7-4de0-a47c-7937d9040737%2FiStock_695337976.jpg?rect=0%2C0%2C3129%2C1760',
+      banner_img: 'https://imageio.forbes.com/specials-images/imageserve/443536636/0x0.jpg?format=jpg&amp;width=1200',
       main_title: 'We Also Have A Ton Of Fun In The Process',
       subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
       aos_style: 'fade-up'
     },
     {
-      banner_img: 'https://imageio.forbes.com/specials-images/imageserve/443536636/0x0.jpg?format=jpg&amp;width=1200',
+      banner_img: 'https://images.thequint.com/thequint%2F2018-12%2Ff0a900f4-4bc7-4de0-a47c-7937d9040737%2FiStock_695337976.jpg?rect=0%2C0%2C3129%2C1760',
       main_title: 'We Also Have A Ton Of Fun In The Process',
       subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
       aos_style: 'fade-up'
@@ -87,12 +88,8 @@ const Hero = () => {
             )
           }
         </Swiper>
-
-
-        {/* <video autoPlay muted loop >
-          <source src={BannerVideo} type="video/mp4" />
-        </video> */}
       </div>
+          {/* <HeroFeature/> */}
     </div>
   )
 }

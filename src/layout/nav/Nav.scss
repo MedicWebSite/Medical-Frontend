@@ -27,7 +27,7 @@ nav {
     flex: 1;
     h1 {
         font-size: 30px;
-        color: var(--primary-dark-color);
+        color: var(--primary-light-color);
     }
 }
 
@@ -63,7 +63,7 @@ nav {
 }
 .hamburger-btn {
     display: none;
-    background-color: var(--primary-dark-color);
+    background-color: var(--primary-light-color);
     padding: 8px 12px;
     border-radius: 5px;
     color: var(--light-color);
@@ -156,7 +156,7 @@ nav {
 
 .authorization-action {
     .auth-link {
-        background-color: var(--primary-dark-color);
+        background-color: var(--primary-light-color);
         padding: 13px 34px;
         font-weight: 500;
         font-size: 17px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import './Doctors.scss'
 import Container from '../../utils/Utils'
 import { FaFacebook, FaTwitter } from "react-icons/fa";
@@ -9,8 +9,9 @@ import Aos from 'aos';
 const Doctors = () => {
 
 
+
     // Aos Init 
-    useEffect(() => {
+    useEffect(() => {   
         Aos.init()
     }, [])
 
@@ -18,17 +19,17 @@ const Doctors = () => {
         {
             img: 'https://i.pinimg.com/originals/b1/25/92/b1259284e51650f2fe7c79705a22dbf4.jpg',
             name: 'Alex Jhon Martin',
-            job: 'Outpatient Surgery'
+            job: 'Outpatient Surgery',
         },
         {
             img: 'https://media.baamboozle.com/uploads/images/10544/1569603188_186887',
             name: 'Alex Jhon Martin',
-            job: 'Outpatient Surgery'
+            job: 'Outpatient Surgery',
         },
         {
             img: 'https://img.freepik.com/premium-photo/laptop_1098-10597.jpg?w=1800',
             name: 'Alex Jhon Martin',
-            job: 'Outpatient Surgery'
+            job: 'Outpatient Surgery',
         },
     ]
 
@@ -38,8 +39,8 @@ const Doctors = () => {
             <p className='our-team'>OUR TEAM</p>
             <h2 className='doctors-team'>Meet The Perfect Team</h2>
             <div className='doctors'>
-                {data?.map(item => (
-                    <div data-aos='fade-up'  className='doctor-info'>
+                {data?.map((item, index) => (
+                    <div  key={index} data-aos='fade-up'  className='doctor-info'>
                         <img className='doctors-img' src={item.img} />
                         <div className='doctor-text'>
                             <p className='doctor-name doc-text-hover'>{item.name}</p>

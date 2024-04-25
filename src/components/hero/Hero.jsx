@@ -9,6 +9,7 @@ import Aos from 'aos';
 import { Link } from 'react-router-dom';
 import HeroFeature from '../hero-feature/HeroFeature';
 
+
 const Hero = () => {
 
 
@@ -51,7 +52,7 @@ const Hero = () => {
   return (
     <div className="hero">
 
-      <div class="banner-video">
+      <div className="banner-video">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -71,8 +72,7 @@ const Hero = () => {
         >
           {
             BannerImages.map((image, index) =>
-              <>
-                <SwiperSlide className='banner-slide' >
+                <SwiperSlide key={index} className='banner-slide' >
                   <img className='banner-image' key={index} src={image.banner_img} />
                   <div className="banner-overlay"></div>
                   <div className="hero-content">
@@ -84,7 +84,6 @@ const Hero = () => {
                     </div>
                   </div>
                 </SwiperSlide>
-              </>
             )
           }
         </Swiper>

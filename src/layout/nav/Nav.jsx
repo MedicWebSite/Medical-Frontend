@@ -147,7 +147,7 @@ const Nav = () => {
                   <div  className="item-subitem">
                     {
                       item?.menu_items?.map((subitem, index) =>
-                        <Link className="subitem-link">{subitem.item_name}</Link>
+                        <Link key={index} className="subitem-link">{subitem.item_name}</Link>
                       )
                     }
                   </div>

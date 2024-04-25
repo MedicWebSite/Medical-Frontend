@@ -17,46 +17,46 @@ const Services = () => {
                 <div data-aos='fade-up' className="service-cards">
                     <div className="service-card">
                         <div className="service-card-top">
-                            <div className="service-img"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <div className="service-img"><i className="fa-solid fa-heart-pulse"></i></div>
                             <h3>Anti Skin Care</h3>
                         </div>
                         <p>There are many variations of pas of Lorem Ipsum availab.There are many variations of pas of Lorem Ipsum availab.</p>
                         <div className="service-box-list">
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
                             </ul>
                         </div>
                     </div>
                     <div  className="service-card">
                         <div className="service-card-top">
-                            <div className="service-img"><i class="fa-solid fa-x-ray"></i></div>
+                            <div className="service-img"><i className="fa-solid fa-x-ray"></i></div>
                             <h3>Anti Skin Care</h3>
                         </div>
                         <p>There are many variations of pas of Lorem Ipsum availab.There are many variations of pas of Lorem Ipsum availab.</p>
                         <div className="service-box-list">
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
                             </ul>
                         </div>
                     </div>
                     <div className="service-card">
                         <div className="service-card-top">
-                            <div className="service-img"><i class="fa-solid fa-capsules"></i></div>
+                            <div className="service-img"><i className="fa-solid fa-capsules"></i></div>
                             <h3>Anti Skin Care</h3>
                         </div>
                         <p>There are many variations of pas of Lorem Ipsum availab.There are many variations of pas of Lorem Ipsum availab.</p>
                         <div className="service-box-list">
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
-                                <li><i class="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
+                                <li><i className="fa-solid fa-check"></i> Endocrinology Services</li>
                             </ul>
                         </div>
                     </div>

@@ -5,11 +5,7 @@ import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { AiFillGooglePlusCircle } from "react-icons/ai";
 import Aos from 'aos';
 
-
 const Doctors = () => {
-
-
-
     // Aos Init 
     useEffect(() => {   
         Aos.init()

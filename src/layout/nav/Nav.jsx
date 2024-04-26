@@ -60,14 +60,14 @@ const MenuData = [
 
 const Nav = () => {
 
+  const {pathname} = useLocation()
+
   // State Hooks
   const [openSearch, setOpenSearch] = useState(false)
   const [itemLists, setItemLists] = useState("")
   const [openResponsiveMenu, setOpenResponsiveSubMenu] = useState(false)
   const [openSubitems, setOpenSubitems] = useState(false)
-  const [fixedNav, setFixedNav] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-
 
   const UpdateScrollPosition = () => {
     setScrollY(window.scrollY)
@@ -79,10 +79,6 @@ const Nav = () => {
       window.removeEventListener('scroll', UpdateScrollPosition)
     }
   }, [])
-
-  console.log(openResponsiveMenu);
-
-  const {pathname} = useLocation()
 
 
   return pathname.includes("/auth") ? null : (
@@ -129,12 +125,9 @@ const Nav = () => {
             <strong>Sign in</strong>
           </Link>
           <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
-
-
-
-         
         </div>
       </Container>
+      
        {/* Responsive menu */}
        <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
             {

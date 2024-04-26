@@ -20,7 +20,6 @@ const Home = () => {
     }
   }, [])
 
-
   const handeScrollTop = () => {
     window.scrollTo(0,0)
   }

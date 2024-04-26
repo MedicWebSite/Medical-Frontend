@@ -40,10 +40,7 @@ const Hero = () => {
     }
 
   ])
-  // useEffect(() => {
-  //   Aos.init()
-  // }, [])
-
+ 
   const InitAos = () => {
     Aos.init()
     Aos.refresh()

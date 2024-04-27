@@ -28,24 +28,29 @@ const Register = () => {
     const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     const [dateOfBirth, setDateOfBirth] = useState('')
     const navigate = useNavigate()
 
 
+
+
     const handleRegisterUser = async (e) => {
         e.preventDefault()
+        
         const NewUser = {
             firstname: firstname,
             lastname, lastname,
             email: email,
             password: password,
-            dateOfBirth: dateOfBirth
+            dateOfBirth: new Date(dateOfBirth).toISOString()
         }
+        console.log(NewUser);
         try {
             const response = await ApiInstance.post('/auth/register', NewUser)
             if (response.status === 200) {
                 console.log(response);
-                setTimeout(() => { navigate('/auth/email-validate') }, 2500)
+                setTimeout(() => { navigate('/auth/login') }, 2500)
             }
         }
         catch (error) {

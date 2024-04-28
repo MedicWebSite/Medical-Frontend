@@ -9,10 +9,11 @@ import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
 
-  const {pathname} = useLocation()
+  const { pathname } = useLocation()
   console.log(pathname);
-  return pathname.includes("auth") ?  null :  (
-    <div  className="extra-footer__wrapper">
+  if (pathname.includes("patient")) return null
+  return pathname.includes("auth") ? null : (
+    <div className="extra-footer__wrapper">
       <Container>
         {/* Footer Top Contact */}
         <div className="extra-footer__contact">

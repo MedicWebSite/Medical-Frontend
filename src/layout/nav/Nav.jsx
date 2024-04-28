@@ -2,7 +2,7 @@ import "./Nav.scss"
 import Container from '../../utils/Utils'
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
-
+import { UserOutlined } from "@ant-design/icons"
 
 const MenuData = [
   {
@@ -79,6 +79,7 @@ const Nav = () => {
       window.removeEventListener('scroll', UpdateScrollPosition)
     }
   }, [])
+  const user = JSON.parse(localStorage.getItem("user"))
 
   if (pathname.includes("patient")) return null
 
@@ -119,7 +120,9 @@ const Nav = () => {
           </div>
 
           <div className="authorization-action">
-            <Link to={'/auth/login'} className="auth-link">Get Started</Link>
+            {
+              user ? <Link to={'/patient/main'} className="user-icon"><UserOutlined /> {user?.FirstName}</Link> : <Link to={'/auth/login'} className="auth-link">Get Started</Link>
+            }
           </div>
           <Link to={'/auth/login'} className="responsive-auth">
             <span className="material-symbols-outlined">person</span>

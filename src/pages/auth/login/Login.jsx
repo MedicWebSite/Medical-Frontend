@@ -6,6 +6,7 @@ import { createButton } from 'react-social-login-buttons'
 import { BsFacebook } from 'react-icons/bs'
 import { useLogin } from '../../../service/mutation/useLogin'
 import { useForm } from 'react-hook-form'
+import { jwtDecode } from "jwt-decode";
 
 const config = {
     icon: BsFacebook,
@@ -15,7 +16,6 @@ const config = {
         height: '40px',
         padding: '9px',
         borderRadius: '50%',
-
     }
 }
 const FacebookLoginButtons = createButton(config)
@@ -24,8 +24,10 @@ const Login = () => {
     const navigation = useNavigate()
     const { mutate } = useLogin()
     const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
     const handleLogin = (values) => {
         mutate(values, {
+
 
             onSuccess: () => {
                 if(values.email){
@@ -33,6 +35,7 @@ const Login = () => {
                         localStorage.setItem('user-data', JSON.stringify(values))
             }
         },
+
             onError: (error) => console.log(error)
         })
     }

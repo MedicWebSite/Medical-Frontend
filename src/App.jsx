@@ -6,9 +6,9 @@ import RouteController from './routes/RouteController';
 function App() {
   return (
     <div className="App">
-      <Nav/>
-      <RouteController/>
-      <Footer/>
+      <Nav />
+      <RouteController />
+      <Footer />
     </div>
   );
 }

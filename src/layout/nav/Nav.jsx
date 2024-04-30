@@ -60,10 +60,13 @@ const MenuData = [
 
 const Nav = () => {
 
+
   const isRegistered = JSON.parse(localStorage.getItem('user-data'))
   console.log(isRegistered);
 
   const {pathname} = useLocation()
+
+
 
   // State Hooks
   const [openSearch, setOpenSearch] = useState(false)
@@ -77,15 +80,16 @@ const Nav = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', UpdateScrollPosition )
+    window.addEventListener('scroll', UpdateScrollPosition)
     return () => {
       window.removeEventListener('scroll', UpdateScrollPosition)
     }
   }, [])
 
+  if (pathname.includes("patient")) return null
 
   return pathname.includes("/auth") ? null : (
-    <nav className={scrollY > 40 ? 'nav-fixed' : '' } >
+    <nav className={scrollY > 40 ? 'nav-fixed' : ''} >
       <Container>
         <div className="nav-wrapper">
           <Link className="nav-logo">
@@ -95,7 +99,7 @@ const Nav = () => {
             {
               MenuData.map((menu_item, index) =>
                 <li onMouseEnter={() => setItemLists(menu_item?.menu_items)} className="menu-item" key={index}>
-                  <NavLink to={menu_item.route_link} className={({isActive}) => isActive ? "item-link item-link--active" : "item-link"} >{menu_item.title}</NavLink>
+                  <NavLink to={menu_item.route_link} className={({ isActive }) => isActive ? "item-link item-link--active" : "item-link"} >{menu_item.title}</NavLink>
                   <span className="material-symbols-outlined">{menu_item.icon}</span>
                   <div className="menu__dropdown-list">
                     {
@@ -127,34 +131,34 @@ const Nav = () => {
             }
           </div>
           <Link to={'/auth/login'} className="responsive-auth">
-          <span className="material-symbols-outlined">person</span>
+            <span className="material-symbols-outlined">person</span>
             <strong>Sign in</strong>
           </Link>
           <span onClick={() => setOpenResponsiveSubMenu(!openResponsiveMenu)} className="material-symbols-outlined hamburger-btn">{openResponsiveMenu ? 'close' : 'menu'}</span>
         </div>
       </Container>
-      
-       {/* Responsive menu */}
-       <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
-            {
-              MenuData.map((item, index) =>
-                <li key={index} className="menu-item">
-                  <Link onClick={() => setOpenSubitems(!openSubitems)}  className="item-link">
-                    {item.title}
-                     <span className="material-symbols-outlined"> {item.icon}</span>
-                     </Link>
-                  <div  className="item-subitem">
-                    {
-                      item?.menu_items?.map((subitem, index) =>
-                        <Link key={index} className="subitem-link">{subitem.item_name}</Link>
-                      )
-                    }
-                  </div>
-                </li>
-              )
-            }
-            
-          </ul>
+
+      {/* Responsive menu */}
+      <ul style={openResponsiveMenu ? { display: 'flex' } : { display: 'none' }} className="responsive__menu-wrapper">
+        {
+          MenuData.map((item, index) =>
+            <li key={index} className="menu-item">
+              <Link onClick={() => setOpenSubitems(!openSubitems)} className="item-link">
+                {item.title}
+                <span className="material-symbols-outlined"> {item.icon}</span>
+              </Link>
+              <div className="item-subitem">
+                {
+                  item?.menu_items?.map((subitem, index) =>
+                    <Link key={index} className="subitem-link">{subitem.item_name}</Link>
+                  )
+                }
+              </div>
+            </li>
+          )
+        }
+
+      </ul>
     </nav>
   )
 }

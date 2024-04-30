@@ -20,16 +20,22 @@ const config = {
 }
 const FacebookLoginButtons = createButton(config)
 const Login = () => {
+
+    const navigation = useNavigate()
     const { mutate } = useLogin()
     const { register, handleSubmit } = useForm()
     const navigate = useNavigate()
     const handleLogin = (values) => {
         mutate(values, {
-            onSuccess: (res) => {
-                const user = jwtDecode(res?.data)
-                localStorage.setItem('user', JSON.stringify(user))
-                navigate('/patient/main')
-            },
+
+
+            onSuccess: () => {
+                if(values.email){
+                        navigation('/')
+                        localStorage.setItem('user-data', JSON.stringify(values))
+            }
+        },
+
             onError: (error) => console.log(error)
         })
     }

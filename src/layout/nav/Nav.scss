@@ -8,7 +8,7 @@ nav {
     top: 0;
     background-color: var(--light-color) !important;
 }
-.nav-fixed{
+.nav-fixed {
     position: fixed;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -50,8 +50,8 @@ nav {
         padding-bottom: 10px;
         padding-top: 10px;
     }
-    .item-link--active{
-        color: #2490EB;
+    .item-link--active {
+        color: #2490eb;
         font-weight: 600;
     }
     span {
@@ -155,6 +155,15 @@ nav {
 }
 
 .authorization-action {
+    .user-icon {
+        color: var(--secondary-dark-color);
+        font-size: 19px;
+        text-decoration: none;
+        font-weight: 500;
+        &:hover {
+            color: var(--primary-dark-color);
+        }
+    }
     .auth-link {
         background-color: var(--primary-light-color);
         padding: 13px 34px;
@@ -203,14 +212,13 @@ nav {
             font-size: 27px;
         }
     }
-
 }
 
-.responsive__menu-wrapper > .menu-item:hover > .item-subitem{
+.responsive__menu-wrapper > .menu-item:hover > .item-subitem {
     display: flex;
 }
 
-.responsive-auth{
+.responsive-auth {
     display: none;
     align-items: center;
     justify-content: center;
@@ -219,25 +227,24 @@ nav {
     border: 2px solid var(--primary-dark-color);
     border-radius: 5px;
     padding: 5px 10px 5px 6px;
-    transition: .1s;
-    &:hover{
+    transition: 0.1s;
+    &:hover {
         background-color: var(--primary-dark-color);
         color: var(--light-color);
-        strong, span{
+        strong,
+        span {
             color: var(--light-color);
         }
     }
-    span{
+    span {
         font-size: 22px;
         margin-top: 2px;
         color: var(--primary-dark-color);
     }
-    strong{
+    strong {
         font-size: 17px;
-    color: var(--primary-dark-color);
-    font-weight: 700;
-
-
+        color: var(--primary-dark-color);
+        font-weight: 700;
     }
 }
 
@@ -258,8 +265,6 @@ nav {
         }
     }
 }
-
-
 
 @media only screen and (max-width: 948px) {
     .hamburger-btn {
@@ -308,7 +313,7 @@ nav {
     .nav-action {
         display: none;
     }
-    .responsive-auth{
+    .responsive-auth {
         display: flex;
     }
     .hamburger-btn {
@@ -318,34 +323,32 @@ nav {
     .authorization-action {
         display: none;
     }
-  
 }
 
+@media only screen and (max-width: 396px) {
+    .responsive-auth {
+        padding: 4px 10px 5px 6px;
 
-@media only screen and (max-width:396px){
-    .responsive-auth{
-    padding: 4px 10px 5px 6px;
-
-        strong{
+        strong {
             font-size: 15px;
         }
-        span{
+        span {
             margin-top: 1px;
             font-size: 21px;
         }
     }
 }
-@media only screen and (max-width:366px){
+@media only screen and (max-width: 366px) {
     .nav-logo {
         h1 {
             font-size: 22px;
         }
     }
-    .responsive-auth{
+    .responsive-auth {
         font-size: 14px;
         padding: 3px 10px 3px 6px;
 
-        span{
+        span {
             font-size: 22px;
         }
     }
@@ -355,19 +358,19 @@ nav {
     }
 }
 
-@media only screen and (max-width:334px){
+@media only screen and (max-width: 334px) {
     .nav-logo {
         h1 {
             font-size: 22px;
         }
     }
-    .responsive-auth{
+    .responsive-auth {
         font-size: 14px;
         padding: 3px 6px;
-        strong{
+        strong {
             display: none;
         }
-        span{
+        span {
             font-size: 23px;
         }
     }

@@ -4,20 +4,27 @@ import {
     MenuUnfoldOutlined,
     DiffOutlined,
     AppstoreOutlined,
-    CalendarOutlined, SettingOutlined, SnippetsOutlined
+    CalendarOutlined, SettingOutlined, SnippetsOutlined, UserOutlined
 } from '@ant-design/icons';
-import { Button, Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme, Popover } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 const PatientDashboard = () => {
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate()
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
     const user = JSON.parse(localStorage.getItem('user'))
+    const hide = () => {
+        setOpen(false);
+    };
+    const handleOpenChange = (newOpen) => {
+        setOpen(newOpen);
+    };
     if (!user) return navigate('/auth/login')
     return (
         <div>
@@ -62,7 +69,7 @@ const PatientDashboard = () => {
                     />
                 </Sider>
                 <Layout>
-                    <Header style={{ padding: 0, background: colorBgContainer }}>
+                    <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '0 20px' }}>
                         <Button
                             type="text"
                             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -73,6 +80,15 @@ const PatientDashboard = () => {
                                 height: 64,
                             }}
                         />
+                        <Popover
+                            content={<a onClick={hide}>Close</a>}
+                            title="Title"
+                            trigger="click"
+                            open={open}
+                            onOpenChange={handleOpenChange}
+                        >
+                            <Button icon={<UserOutlined style={{ fontSize: '18px' }} />} type="dashed" size='large' shape='circle' ></Button>
+                        </Popover>
                     </Header>
                     <Content
                         style={{

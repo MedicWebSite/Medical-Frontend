@@ -61,7 +61,7 @@ const MenuData = [
 const Nav = () => {
 
 
-  const isRegistered = JSON.parse(localStorage.getItem('user-data'))
+  const isRegistered = JSON.parse(localStorage.getItem('user'))
   console.log(isRegistered);
 
   const { pathname } = useLocation()
@@ -85,7 +85,6 @@ const Nav = () => {
       window.removeEventListener('scroll', UpdateScrollPosition)
     }
   }, [])
-  const user = JSON.parse(localStorage.getItem("user"))
 
   if (pathname.includes("patient")) return null
 
@@ -125,9 +124,18 @@ const Nav = () => {
             </form>
           </div>
 
-          <div className="authorization-action">
-            <Link to={'/auth/login'} className="auth-link">Get Started</Link>
-          </div>
+          {
+            isRegistered ? (
+              <div className="nav-menu">
+                <Link to={'/appointment'} className="item-link">Appointment</Link>
+                <Link to={'/patient/main'} className="item-link">Dashboard</Link>
+              </div>
+            ) : (
+              <div className="authorization-action">
+                <Link to={'/auth/login'} className="auth-link">Get Started</Link>
+              </div>
+            )
+          }
           <Link to={'/auth/login'} className="responsive-auth">
             <span className="material-symbols-outlined">person</span>
             <strong>Sign in</strong>

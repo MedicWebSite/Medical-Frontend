@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import { LoginSocialFacebook } from 'reactjs-social-login'
 import { createButton } from 'react-social-login-buttons'
@@ -20,11 +20,19 @@ const config = {
 }
 const FacebookLoginButtons = createButton(config)
 const Login = () => {
+
+    const navigation = useNavigate()
     const { mutate } = useLogin()
     const { register, handleSubmit } = useForm()
     const handleLogin = (values) => {
         mutate(values, {
-            onSuccess: () => console.log('success'),
+
+            onSuccess: () => {
+                if(values.email){
+                        navigation('/')
+                        localStorage.setItem('user-data', JSON.stringify(values))
+            }
+        },
             onError: (error) => console.log(error)
         })
     }

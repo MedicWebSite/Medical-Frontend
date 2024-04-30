@@ -6,6 +6,7 @@ import Login from '../pages/auth/login/Login'
 import Auth from '../pages/auth/Auth'
 import EmailValidate from '../pages/auth/email-validate/EmailValidate'
 import ContactUs from '../pages/contact-us/ContactUs'
+import Appointment from '../pages/appointment/Appointment'
 
 const RouteController = () => {
   return (
@@ -17,6 +18,7 @@ const RouteController = () => {
         <Route path='register' element={<Register />} />
         <Route path='email-validate' element={<EmailValidate />} />
       </Route>
+      <Route path='appointment' element={<Appointment/>}/>
     </Routes>
   )
 }

@@ -1,17 +1,23 @@
+"use client"
 import React from 'react'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Card, Typography, Tag, Space, Table, Carousel } from 'antd';
+import { Card, Typography, Table, Flex, } from 'antd';
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useGetDoctors } from '../../../service/query/useGetDoctors';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './MainDashboard.scss';
+import { FaStar, FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+
+
 const { Meta } = Card;
-
-
-
 const MainDashboard = () => {
-    const data = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate()
-    if (!data) return navigate('/auth/login')
-
+    const { data } = useGetDoctors()
+    if (!user) return navigate('/auth/login')
     const columns = [
         {
             title: 'Doctor Name',
@@ -113,11 +119,11 @@ const MainDashboard = () => {
             >
                 <Meta
                     avatar={<FaUser size={80} />}
-                    title={<Typography.Title level={3}>{data?.FirstName} {data?.LastName}</Typography.Title>}
+                    title={<Typography.Title level={3}>{user?.FirstName} {user?.LastName}</Typography.Title>}
                     description={<div>
-                        <h4>Id: {data?.Id}</h4>
-                        <h4>Email: {data?.Email}</h4>
-                        <h4>Role: {data?.Role}</h4>
+                        <h4>Id: {user?.Id}</h4>
+                        <h4>Email: {user?.Email}</h4>
+                        <h4>Role: {user?.Role}</h4>
                     </div>}
                 />
             </Card>
@@ -141,7 +147,47 @@ const MainDashboard = () => {
                     <Table columns={columns} dataSource={tableData} pagination={false} />
                 </div>
             </div>
-        </div>
+            <div style={{ padding: "30px 0" }}>
+                <Typography.Title level={3} style={{ margin: "40px 0 20px 0" }}>Doctors</Typography.Title>
+                <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    className="mySwiper"
+                    style={{ padding: "10px 0" }}
+                >
+                    {
+                        doctors.map((doctor) => (
+                            <SwiperSlide>
+                                <Card
+                                    hoverable
+                                    style={{ width: 250 }}
+                                    cover={<img alt="example" src={doctor.img} style={{ height: "180px", width: "100%", }} />}
+                                >
+                                    <Flex align='center' justify='space-between' style={{ marginBottom: "5px" }}>
+                                        <h3>{doctor?.name}</h3>
+                                        <Flex align='center' gap='5px'><FaStar color='orange' size={18} /><h3>{doctor?.rate}</h3> </Flex>
+                                    </Flex>
+                                    <p className='doctor-in'>Speciality: {doctor?.specialization}</p>
+                                    <p className='doctor-in'>Experience: {doctor?.experience} years</p>
+                                    <p className='doctor-in'>Location: {doctor?.location}</p>
+                                    <Flex align='center' justify='space-between'>
+                                        <p className='doctor-in'>1 min: {doctor?.price}</p>
+                                        <Flex align='center' gap='5px'>
+                                            <div className='doctor-phone-icon'>
+                                                <FaPhoneAlt />
+                                            </div>
+                                            <div className="doctor-phone-icon">
+                                                <FaCalendarAlt />
+                                            </div>
+                                        </Flex>
+                                    </Flex>
+                                </Card>
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </div>
+        </div >
     )
 }
 

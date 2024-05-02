@@ -7,6 +7,7 @@ import { BsFacebook } from 'react-icons/bs'
 import { useLogin } from '../../../service/mutation/useLogin'
 import { useForm } from 'react-hook-form'
 import { jwtDecode } from "jwt-decode";
+import Cookies from 'js-cookie';
 
 const config = {
     icon: BsFacebook,
@@ -32,6 +33,7 @@ const Login = () => {
                 const user = jwtDecode(res?.data)
                 console.log(jwtDecode(res?.data));
                 localStorage.setItem('user', JSON.stringify(user))
+                Cookies.set('user-token', res?.data, { expires: 7 })
                 navigate('/')
             },
             onError: (error) => console.log(error)

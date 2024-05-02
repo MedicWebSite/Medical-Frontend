@@ -2,7 +2,7 @@ import "./Nav.scss"
 import Container from '../../utils/Utils'
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { UserOutlined } from "@ant-design/icons"
+// import { UserOutlined } from "@ant-design/icons"
 
 const MenuData = [
   {

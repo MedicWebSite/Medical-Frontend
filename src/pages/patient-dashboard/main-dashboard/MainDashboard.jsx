@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { useGetDoctors } from '../../../service/query/useGetDoctors';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import './MainDashboard.scss';
 import { FaStar, FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+import { Navigation } from 'swiper/modules';
 
 
 const { Meta } = Card;
@@ -147,13 +148,15 @@ const MainDashboard = () => {
                     <Table columns={columns} dataSource={tableData} pagination={false} />
                 </div>
             </div>
-            <div style={{ padding: "30px 0" }}>
+            <div style={{ position: "relative" }}>
                 <Typography.Title level={3} style={{ margin: "40px 0 20px 0" }}>Doctors</Typography.Title>
                 <Swiper
                     slidesPerView={4}
-                    spaceBetween={30}
+                    spaceBetween={20}
                     className="mySwiper"
-                    style={{ padding: "10px 0" }}
+                    style={{ padding: "50px 0" }}
+                    navigation={true}
+                    modules={[Navigation]}
                 >
                     {
                         doctors.map((doctor) => (

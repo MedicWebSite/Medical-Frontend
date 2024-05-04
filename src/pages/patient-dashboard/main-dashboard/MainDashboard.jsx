@@ -11,13 +11,13 @@ import 'swiper/css/navigation';
 import './MainDashboard.scss';
 import { FaStar, FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 import { Navigation } from 'swiper/modules';
+import { doctors } from '../doctors-data';
 
 
 const { Meta } = Card;
 const MainDashboard = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate()
-    const { data } = useGetDoctors()
     if (!user) return navigate('/auth/login')
     const columns = [
         {
@@ -134,10 +134,10 @@ const MainDashboard = () => {
                     illness_data.map((illness) => (
                         <Card
                             hoverable
-                            style={{ width: 100 }}
-                            cover={<img alt="example" src={illness.image} style={{ height: "40px", width: "100%", }} />}
+                            style={{ width: 120 }}
+                            cover={<img alt="example" src={illness.image} style={{ height: "80px", width: "100%", }} />}
                         >
-                            <h4>{illness.title.slice(0, 5) + "..."}</h4>
+                            <h4>{illness.title}</h4>
                         </Card>
                     ))
                 }
@@ -200,141 +200,41 @@ const illness_data = [
     {
         "id": 1,
         "title": "Common Cold",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fchildhood_diseases.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 2,
         "title": "Flu",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 3,
         "title": "Headache",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 4,
         "title": "Food Poisoning",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 5,
         "title": "Sprain",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 6,
         "title": "Skin Rash",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 7,
         "title": "Allergic Reaction",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
     {
         "id": 8,
         "title": "Sprain",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
-    },
-    {
-        "id": 9,
-        "title": "Skin Rash",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
-    },
-    {
-        "id": 10,
-        "title": "Allergic Reaction",
-        "image": "https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fillness%2Fimpotence.png&w=48&q=100"
+        "image": "https://cdn-icons-png.flaticon.com/512/6604/6604338.png"
     },
 ]
-const doctors = [
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-    {
-        name: `John Morgan`,
-        img: `https://xmed.uz/_next/image/?url=https%3A%2F%2Fprod.xmed.uz%2Fimages%2Fdoctor_images%2F56464171.png&w=256&q=75`,
-        rate: `4.8`,
-        specialization: `Dermatologist`,
-        experience: `10 years`,
-        location: `Tashkent, Uzbekistan`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        language: `uz | ru`,
-        price: `10 000 so'm`,
-    },
-];

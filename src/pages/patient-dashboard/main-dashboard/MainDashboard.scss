@@ -1,0 +1,58 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctor-in {
+    text-align: left;
+    font-weight: 500 !important;
+}
+
+.doctor-phone-icon {
+    background-color: #007aff;
+    color: #fff;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+}
+.swiper-button-prev:after {
+    position: absolute !important;
+    bottom: 215px !important;
+    right: -1150px !important;
+}
+
+.swiper-button-next:after {
+    position: absolute !important;
+    bottom: 215px !important;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    background-color: #007aff;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 50%;
+}

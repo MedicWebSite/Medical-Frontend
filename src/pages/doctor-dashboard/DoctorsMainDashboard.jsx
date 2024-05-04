@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    DiffOutlined,
     AppstoreOutlined,
-    CalendarOutlined, SettingOutlined, SnippetsOutlined, UserOutlined
+    UsergroupAddOutlined, TeamOutlined, CalendarOutlined, UserOutlined
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme, Popover } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
@@ -43,28 +42,23 @@ const DoctorsMainDashboard = () => {
                             {
                                 key: '1',
                                 icon: <AppstoreOutlined />,
-                                label: <Link to={'main'}>Main</Link>,
+                                label: <Link to={'main'}>Doctors</Link>,
                             },
                             {
                                 key: '2',
-                                icon: <CalendarOutlined />,
-                                label: <Link to={'book-appointment'}>Book appointment</Link>,
+                                icon: <UsergroupAddOutlined />,
+                                label: <Link to={'patients'}>Patients</Link>,
                             },
                             {
                                 key: '3',
-                                icon: <DiffOutlined />,
-                                label: <Link to={'my-appointment'}>My appointments</Link>,
+                                icon: <CalendarOutlined />,
+                                label: <Link to={'appointments'}>Appointments</Link>,
                             },
                             {
                                 key: '4',
-                                icon: <SnippetsOutlined />,
-                                label: <Link to={'my-documents'}>My documents</Link>,
-                            },
-                            {
-                                key: '5',
-                                icon: <SettingOutlined />,
-                                label: <Link to={'my-settings'}>Settings</Link>,
-                            },
+                                icon: <TeamOutlined />,
+                                label: <Link to={'stuff'}>Stuff</Link>,
+                            }
                         ]}
                     />
                 </Sider>

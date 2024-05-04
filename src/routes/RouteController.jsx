@@ -28,7 +28,7 @@ const RouteController = () => {
         <Route path='email-validate' element={<EmailValidate />} />
       </Route>
 
-      <Route path='appointment' element={<Appointment/>}/>
+      <Route path='appointment' element={<Appointment />} />
 
       <Route path='patient' element={<PatientDashboard />}>
         <Route index path='main' element={<MainDashboard />} />

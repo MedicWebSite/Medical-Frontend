@@ -24,37 +24,19 @@ const MenuData = [
       { item_name: "RMI Services", link: "https://example.com/maternity-care" },
     ]
   },
-  // {
-  //   title: "Pages",
-  //   icon: "keyboard_arrow_down",
-  //   route_link: 'pages',
-  //   menu_items: [
-  //     {
-  //       item_name: "About Us",
-  //       item_link: "about-us",
-  //     },
-  //     {
-  //       item_name: "Our Process",
-  //       item_link: "our-process",
-  //     },
-  //     {
-  //       item_name: "Our Plans",
-  //       item_link: "our_plans",
-  //     },
-  //     {
-  //       item_name: "Working Ours",
-  //       item_link: "working_ours",
-  //     },
-  //     {
-  //       item_name: "Our Doctors",
-  //       item_link: "our_doctors",
-  //     }
-  //   ]
-  // },
+ 
   {
     title: "Contact Us",
     route_link: 'contact-us'
-  }
+  },
+  {
+    title: "About Us",
+    route_link: 'about-us'
+  },
+  {
+    title: "FAQ",
+    route_link: 'faq'
+  },
 ]
 
 
@@ -93,8 +75,9 @@ const Nav = () => {
       <Container>
         <div className="nav-wrapper">
           <Link className="nav-logo">
-            <h1>Azhar INC</h1>
+            <h1>AzharInc</h1>
           </Link>
+
           <ul className="nav-menu">
             {
               MenuData.map((menu_item, index) =>
@@ -113,22 +96,17 @@ const Nav = () => {
             }
           </ul>
 
-          <div className="nav-action">
-            <span style={openSearch ? { display: 'none' } : { display: 'block' }} onClick={() => setOpenSearch(true)} className="material-symbols-outlined action-icon">search</span>
-            <span style={openSearch ? { display: 'block' } : { display: 'none' }} onClick={() => setOpenSearch(false)} className="material-symbols-outlined action-icon">close</span>
-            <form style={openSearch ? { transform: 'scale(1) translateY(30%)' } : { transform: 'scale(0) translateY(30%)', transition: '0s' }} className="search-form">
-              <input className="search-input" type="text" placeholder="Search" />
-              <button className="search-btn">
-                <span className="material-symbols-outlined">search</span>
-              </button>
-            </form>
-          </div>
+      <div className="nav__search-form">
+        <input type="search" placeholder="Search..." />
+        <span className="material-symbols-outlined">search</span>
+      </div>
+
+         
+
+         
 
           <div className="authorization-action">
-            {
-              isRegistered ? <Link to={'/appointment'} className="auth-link">APPOINTMENT + </Link>
-              : <Link to={'/auth/login'} className="auth-link">Get Started</Link>
-            }
+             <Link to={'/appointment'} className="appointment-link">APPOINTMENT + </Link>
           </div>
           <Link to={'/auth/login'} className="responsive-auth">
             <span className="material-symbols-outlined">person</span>

@@ -21,13 +21,13 @@ const Hero = () => {
       aos_style: 'fade-up'
     },
     {
-      banner_img: 'https://images.thequint.com/thequint%2F2018-12%2Ff0a900f4-4bc7-4de0-a47c-7937d9040737%2FiStock_695337976.jpg?rect=0%2C0%2C3129%2C1760',
+      banner_img: 'https://cloudcontact.ru/wp-content/uploads/2018/03/Fotolia_115406199_M.jpg',
       main_title: 'We Also Have A Ton Of Fun In The Process',
       subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
       aos_style: 'fade-up'
     },
     {
-      banner_img: 'https://cloudcontact.ru/wp-content/uploads/2018/03/Fotolia_115406199_M.jpg',
+      banner_img: 'https://images.thequint.com/thequint%2F2018-12%2Ff0a900f4-4bc7-4de0-a47c-7937d9040737%2FiStock_695337976.jpg?rect=0%2C0%2C3129%2C1760',
       main_title: 'We Also Have A Ton Of Fun In The Process',
       subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
       aos_style: 'fade-up'
@@ -53,10 +53,10 @@ const Hero = () => {
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
-          autoplay={{
-            delay: 3800,
-            disableOnInteraction: false,
-          }}
+          // autoplay={{
+          //   delay: 3800,
+          //   disableOnInteraction: false,
+          // }}
           speed={1700}
           loop={true}
           pagination={{

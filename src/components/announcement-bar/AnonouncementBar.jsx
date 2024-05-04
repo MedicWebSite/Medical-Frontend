@@ -2,8 +2,12 @@ import React from 'react'
 import './AnnouncementBar.scss'
 import Container from '../../utils/Utils'
 import { FaLocationDot } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 const AnonouncementBar = () => {
+  const { pathname } = useLocation()
+  if (pathname.includes("patient")) return null
+  if (pathname.includes("doctor")) return null
+
   return (
     <div className='announcement'>
       <Container>

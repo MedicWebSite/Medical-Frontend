@@ -12,6 +12,7 @@ const Footer = () => {
   const { pathname } = useLocation()
   console.log(pathname);
   if (pathname.includes("patient")) return null
+  if (pathname.includes("doctor")) return null
   return pathname.includes("auth") ? null : (
     <div className="extra-footer__wrapper">
       <Container>

@@ -24,7 +24,7 @@ const MenuData = [
       { item_name: "RMI Services", link: "https://example.com/maternity-care" },
     ]
   },
- 
+
   {
     title: "Contact Us",
     route_link: 'contact-us'
@@ -69,6 +69,7 @@ const Nav = () => {
   }, [])
 
   if (pathname.includes("patient")) return null
+  if (pathname.includes("doctor")) return null
 
   return pathname.includes("/auth") ? null : (
     <nav className={scrollY > 40 ? 'nav-fixed' : ''} >
@@ -96,18 +97,18 @@ const Nav = () => {
             }
           </ul>
 
-      <div className="nav__search-form">
-        <input type="search" placeholder="Search..." />
-        <span className="material-symbols-outlined">search</span>
-      </div>
+          <div className="nav__search-form">
+            <input type="search" placeholder="Search..." />
+            <span className="material-symbols-outlined">search</span>
+          </div>
 
-         
 
-         
+
+
 
 
           <div className="authorization-action">
-             <Link to={'/appointment'} className="appointment-link">APPOINTMENT + </Link>
+            <Link to={'/appointment'} className="appointment-link">APPOINTMENT + </Link>
           </div>
 
           <Link to={'/auth/login'} className="responsive-auth">

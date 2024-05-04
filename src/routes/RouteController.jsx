@@ -15,6 +15,11 @@ import BookAppoinment from '../pages/patient-dashboard/book-appointment/BookAppo
 import PatientAppointments from '../pages/patient-dashboard/patient-appointments/PatientAppointments'
 import PatientDocuments from '../pages/patient-dashboard/patient-documents/PatientDocuments'
 import PatientSettings from '../pages/patient-dashboard/settings/PatientSettings'
+import DoctorsMainDashboard from '../pages/doctor-dashboard/DoctorsMainDashboard'
+import Doctors from '../pages/doctor-dashboard/doctors/Doctors'
+import Patients from '../pages/doctor-dashboard/patients/Patients'
+import Appointments from '../pages/doctor-dashboard/appointments/Appointments'
+import Stuff from '../pages/doctor-dashboard/stuff/Stuff'
 
 
 const RouteController = () => {
@@ -36,6 +41,12 @@ const RouteController = () => {
         <Route path='my-appointment' element={<PatientAppointments />} />
         <Route path='my-documents' element={<PatientDocuments />} />
         <Route path='my-settings' element={<PatientSettings />} />
+      </Route>
+      <Route path='doctor' element={<DoctorsMainDashboard />}>
+        <Route index path='main' element={<Doctors />} />
+        <Route path="patients" element={<Patients />} />
+        <Route path='appointments' element={<Appointments />} />
+        <Route path='stuff' element={<Stuff />} />
       </Route>
 
     </Routes>

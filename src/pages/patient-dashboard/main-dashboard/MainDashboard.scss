@@ -36,23 +36,3 @@
     place-items: center;
     font-size: 16px;
 }
-.swiper-button-prev:after {
-    position: absolute !important;
-    bottom: 215px !important;
-    right: -1150px !important;
-}
-
-.swiper-button-next:after {
-    position: absolute !important;
-    bottom: 215px !important;
-}
-.swiper-button-next:after,
-.swiper-button-prev:after {
-    font-size: 20px;
-    display: grid;
-    place-items: center;
-    background-color: #007aff;
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 50%;
-}

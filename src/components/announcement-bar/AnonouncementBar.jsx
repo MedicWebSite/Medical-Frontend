@@ -9,18 +9,18 @@ const AnonouncementBar = () => {
       <Container>
         <div className="announcement-wrapper">
           <div className="location-item">
-            <p><i><FaLocationDot/></i> City:</p>
+            <p><i><FaLocationDot /></i> City:</p>
             <strong>Tashkent</strong>
           </div>
           <div className="top-actions">
 
-          <div className="number-text">+998 (33) 500-31-17</div>
-          <div className="languages-action">
-            <button>UZB</button>
-            <button>RUS</button>
-            <button>ENG</button>
-          </div>
-          <Link className='auth-link'> <span className='material-symbols-outlined'>person</span> Register</Link>
+            <div className="number-text">+998 (33) 500-31-17</div>
+            <div className="languages-action">
+              <button>UZB</button>
+              <button>RUS</button>
+              <button>ENG</button>
+            </div>
+            <Link className='auth-link' to={'/auth/register'}> <span className='material-symbols-outlined'>person</span> Register</Link>
           </div>
 
         </div>

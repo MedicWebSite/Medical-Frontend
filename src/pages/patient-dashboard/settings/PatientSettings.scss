@@ -37,3 +37,27 @@
 .patient-profile-submit {
     width: 250px;
 }
+
+@media screen and (max-width: 768px) {
+    .patient-settings {
+        width: 100%;
+    }
+    .patient-profile-form {
+        margin: 10px 0;
+    }
+    .patient-settings-title {
+        font-size: 20px;
+    }
+    .patient-profile-input,
+    .patient-profile-submit {
+        margin: 0 !important;
+        width: 100%;
+    }
+    .ant-form-item-label {
+        padding: 0 !important;
+    }
+    .patient-profile-icon {
+        font-size: 80px;
+        padding: 10px;
+    }
+}

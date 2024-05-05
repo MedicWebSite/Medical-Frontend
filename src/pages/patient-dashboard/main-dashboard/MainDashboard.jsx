@@ -2,14 +2,13 @@
 import React from 'react'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Card, Typography, Table, Flex, } from 'antd';
-import { FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useGetDoctors } from '../../../service/query/useGetDoctors';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './MainDashboard.scss';
-import { FaStar, FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+import { FaStar, FaPhoneAlt, FaCalendarAlt, FaUser } from "react-icons/fa";
 import { Navigation } from 'swiper/modules';
 import { doctors } from '../doctors-data';
 

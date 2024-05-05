@@ -56,11 +56,6 @@ const PatientDashboard = () => {
                                 label: <Link to={'my-appointment'}>My appointments</Link>,
                             },
                             {
-                                key: '4',
-                                icon: <SnippetsOutlined />,
-                                label: <Link to={'my-documents'}>My documents</Link>,
-                            },
-                            {
                                 key: '5',
                                 icon: <SettingOutlined />,
                                 label: <Link to={'my-settings'}>Settings</Link>,

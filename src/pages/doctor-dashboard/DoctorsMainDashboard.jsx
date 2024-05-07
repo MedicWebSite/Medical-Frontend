@@ -24,7 +24,7 @@ const DoctorsMainDashboard = () => {
     const handleOpenChange = (newOpen) => {
         setOpen(newOpen);
     };
-    if (!user) return navigate('/auth/login')
+    // if (!user) return navigate('/auth/login')
     return (
         <div>
             <Layout style={{ minHeight: '100vh' }}>

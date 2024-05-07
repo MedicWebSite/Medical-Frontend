@@ -1,0 +1,22 @@
+
+.doctors__content-navigation{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.doctors-subtitle{
+    font-size: 22px;
+    font-weight: 500;
+}
+.add__doctor-btn{
+    color: var(--light-color);
+    font-size: 22px;
+    border: none;
+    border-radius: 6px;
+    padding: 2px 10px;
+    transition: .2s;
+    background-color: var(--primary-light-color);
+    &:hover{
+        cursor: pointer;
+    }
+}

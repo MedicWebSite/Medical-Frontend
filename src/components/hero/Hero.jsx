@@ -19,26 +19,7 @@ const Hero = () => {
       main_title: 'We Also Have A Ton Of Fun In The Process',
       subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
       aos_style: 'fade-up'
-    },
-    {
-      banner_img: 'https://cloudcontact.ru/wp-content/uploads/2018/03/Fotolia_115406199_M.jpg',
-      main_title: 'We Also Have A Ton Of Fun In The Process',
-      subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
-      aos_style: 'fade-up'
-    },
-    {
-      banner_img: 'https://images.thequint.com/thequint%2F2018-12%2Ff0a900f4-4bc7-4de0-a47c-7937d9040737%2FiStock_695337976.jpg?rect=0%2C0%2C3129%2C1760',
-      main_title: 'We Also Have A Ton Of Fun In The Process',
-      subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
-      aos_style: 'fade-up'
-    },
-    {
-      banner_img: 'https://backpainsa.com/wp-content/uploads/2015/02/bigstock-Medical-physician-doctor-hands-84721406.jpg',
-      main_title: 'We Also Have A Ton Of Fun In The Process',
-      subtitle: 'WELCOME TO THE AZHAR INC HOSPITAL',
-      aos_style: 'fade-up'
     }
-
   ])
  
   const InitAos = () => {
@@ -59,9 +40,9 @@ const Hero = () => {
           // }}
           speed={1700}
           loop={true}
-          pagination={{
-            clickable: true,
-          }}
+          // pagination={{
+          //   clickable: true,
+          // }}
           onAfterInit={InitAos}
           navigation={true}
           modules={[Autoplay, Navigation, Pagination]}

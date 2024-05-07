@@ -4,6 +4,7 @@ import Services from '../../components/services/Services'
 import Portfolio from '../../components/portfolio/Portfolio'
 import Doctors from '../../components/doctors/Doctors'
 import Patient from '../../components/patient/Patient'
+import Statistics from '../../statistics/Statistics'
 
 const Home = () => {
 
@@ -27,6 +28,7 @@ const Home = () => {
   return (
     <div>
       <Hero/>
+      <Statistics/>
       <Services />
       <Portfolio />
       <Doctors/>

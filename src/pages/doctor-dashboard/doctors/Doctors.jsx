@@ -1,173 +1,136 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
 import './Doctors.scss'
-import { Button, Flex, Input, Table } from 'antd'
-import { FaEye } from "react-icons/fa";
-import { MdModeEdit } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import ApiInstance from '../../../api'
+import { Button, Table } from 'antd'
+import { AddDoctorModal } from '../../../utils/Utils';
+
+const columns = [
+    {
+        title: 'Firstname',
+        dataIndex: 'firstName',
+    },
+    {
+        title: 'Lastname',
+        dataIndex: 'lastName',
+    },
+    {
+        title: 'Number',
+        dataIndex: 'contactNumber'
+    },
+    {
+        title: 'Birthday',
+        dataIndex: 'dateOfBirth'
+    },
+    {
+        title: 'Address',
+        dataIndex: 'address',
+    },
+    {
+        title: 'Action',
+        dataIndex: 'action'
+    },
+    {
+        title: 'Action',
+        dataIndex: <>
+        <button>Edit</button>
+        </>
+    }
+    
+];
+const data = [];
+for (let i = 0; i < 46; i++) {
+    data.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age: Math.floor(Math.random() * 30),
+        address: `London, Park Lane no. ${i}`,
+        action:
+            <>
+                <Button>Delete</Button>
+                <Button >Edit</Button>
+            </>
+    });
+}
+
 
 const Doctors = () => {
-    const columns = [
-        {
-            title: 'Doctor Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: (text) => <a>{text}</a>,
-        },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-        },
-        {
-            title: 'Contact No.',
-            dataIndex: 'contact',
-            key: 'contact',
-        },
-        {
-            title: 'Specialization',
-            dataIndex: 'speciality',
-            key: 'speciality',
-        },
-        {
-            title: 'Gender',
-            dataIndex: 'gender',
-            key: 'gender',
-        },
-        {
-            title: 'Licence Number',
-            dataIndex: 'licence_num',
-            key: 'licence_num',
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: () => (
-                <Flex justifyContent='center' gap='10px'>
-                    <Button className='table-btn-1 table-btn'><FaEye /></Button>
-                    <Button className='table-btn-2 table-btn'><MdModeEdit /></Button>
-                    <Button className='table-btn-3 table-btn'><RiDeleteBin6Line /></Button>
-                </Flex>
-            ),
-        },
-    ];
+    const token = localStorage.getItem('token') && localStorage.getItem('token')
+    // HOOKS
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [doctorsList, setDoctorsList] = useState([])
+    const [openDoctorModal, setOpenDoctorModal] = useState(false)
+    console.log(doctorsList);
 
-    const tableData = [
-        {
-            key: '1',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '2',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '3',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '4',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            gender: 'Male',
-            contact: '+1 (691) 604-6346',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '5',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '6',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '7',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '8',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '9',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            gender: 'Male',
-            contact: '+1 (691) 604-6346',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-        {
-            key: '10',
-            name: 'John Brown',
-            email: 'dr.sarah.chang@example.com',
-            speciality: 'Urologist',
-            contact: '+1 (691) 604-6346',
-            gender: 'Male',
-            licence_num: 'CD345678q',
-            time: '10:00 AM',
-        },
-    ];
+
+    const onSelectChange = (newSelectedRowKeys) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    useEffect(() => {
+        async function GetDoctors() {
+            try {
+                const response = await ApiInstance('/doctors/get-all', {
+                    headers: {
+                        'Authorization': token && `Bearer ${token}`
+                    }
+                })
+
+                setDoctorsList(response?.data?.data)
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        GetDoctors()
+    }, [])
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
+            {
+                key: 'odd',
+                text: 'Select Odd Row',
+                onSelect: (changeableRowKeys) => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
+                        if (index % 2 !== 0) {
+                            return false;
+                        }
+                        return true;
+                    });
+                    setSelectedRowKeys(newSelectedRowKeys);
+                },
+            },
+            {
+                key: 'even',
+                text: 'Select Even Row',
+                onSelect: (changeableRowKeys) => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
+                        if (index % 2 !== 0) {
+                            return true;
+                        }
+                        return false;
+                    });
+                    setSelectedRowKeys(newSelectedRowKeys);
+                },
+            },
+        ],
+    };
 
     return (
-        <div>
-            <div className='manage-doctor-header'>
-                <h3>Manage Doctor</h3>
-                <Flex align='center' gap='10px' >
-                    <Input className='search-doctor-input' size='large' placeholder='Search' />
-                    <Button type='primary' size='large' className='add-doctor-btn'>+</Button>
-                </Flex>
+        <div className='doctors-content'>
+            <div className="doctors__content-navigation">
+                <h3 className='doctors-subtitle'>Manage Doctors</h3>
+                <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>+</button>
             </div>
-            <div>
-                <Table columns={columns} dataSource={tableData} pagination={{ defaultPageSize: 10, showSizeChanger: true, position: ['topRight'] }} scroll={{ x: 1200 }} />
-            </div>
-        </div>
-    )
-}
+            <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
+            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
+
 
 export default Doctors

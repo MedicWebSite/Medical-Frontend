@@ -39,6 +39,21 @@
     display: flex;
     column-gap: 2rem;
 }
+.work-time{
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+    span{
+        color: var(--light-color);
+        font-size: 19px;
+        margin-top: 1px;
+    }
+    p{
+        color: var(--light-color);
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
 
 .number-text{
     color: var(--light-color);
@@ -54,7 +69,7 @@
         color: rgb(236, 234, 234);
         background: transparent;
         border: none;
-        font-size: 15px;
+        font-size: 14px;
         &:hover{
             color: var(--light-color);
             cursor: pointer;

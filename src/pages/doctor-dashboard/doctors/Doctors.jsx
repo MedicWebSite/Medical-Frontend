@@ -153,6 +153,7 @@ const Doctors = () => {
             time: '10:00 AM',
         },
     ];
+
     return (
         <div>
             <div className='manage-doctor-header'>

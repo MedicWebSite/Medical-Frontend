@@ -11,7 +11,9 @@ const ApiInstance = axios.create({
 ApiInstance.interceptors.request.use(
   (setconfig) => {
     if (setconfig.url !== "/auth/login")
-      setconfig.headers["Authorization"] = `Token ${Cookies.get("user-token")}`;
+      setconfig.headers["Authorization"] = `Bearer ${Cookies.get(
+        "user-token"
+      )}`;
     return setconfig;
   },
   (error) => {

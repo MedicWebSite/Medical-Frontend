@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import './Doctors.scss'
 import ApiInstance from '../../../api'
@@ -130,8 +131,6 @@ const Doctors = () => {
             </div>
             <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
             <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
-        </div>
-    )
-}
+
 
 export default Doctors

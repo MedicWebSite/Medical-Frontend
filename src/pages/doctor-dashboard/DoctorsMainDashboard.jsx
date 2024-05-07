@@ -13,7 +13,6 @@ const { Header, Sider, Content } = Layout;
 const DoctorsMainDashboard = () => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate()
-    const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -28,7 +27,7 @@ const DoctorsMainDashboard = () => {
     return (
         <div>
             <Layout style={{ minHeight: '100vh' }}>
-                <Sider trigger={null} collapsible collapsed={collapsed}>
+                <Sider breakpoint='lg' collapsedWidth="0">
                     <div className="demo-logo-vertical">
                         <Link to={'/'} >
                             <h1 style={{ textAlign: 'center', margin: '24px 0', fontSize: '24px', color: 'white' }}>Azhar INC</h1>
@@ -64,16 +63,7 @@ const DoctorsMainDashboard = () => {
                 </Sider>
                 <Layout>
                     <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '0 20px' }}>
-                        <Button
-                            type="text"
-                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                            onClick={() => setCollapsed(!collapsed)}
-                            style={{
-                                fontSize: '16px',
-                                width: 64,
-                                height: 64,
-                            }}
-                        />
+                        <div></div>
                         <Popover
                             content={<a onClick={hide}>Close</a>}
                             title="Title"

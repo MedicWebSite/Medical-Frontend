@@ -8,6 +8,7 @@ export const ApiInstance = axios.create({
   },
 });
 
+
 // ApiInstance.interceptors.request.use(
 //   (setconfig) => {
 //     if (setconfig.url !== "/auth/login")
@@ -18,5 +19,6 @@ export const ApiInstance = axios.create({
 //     return Promise.reject(error);
 //   }
 // );
+
 
 export default ApiInstance;

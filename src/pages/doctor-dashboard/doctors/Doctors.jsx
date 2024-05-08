@@ -71,7 +71,7 @@ const Doctors = () => {
     useEffect(() => {
         async function GetDoctors() {
             try {
-                
+
                 const response = await ApiInstance('/doctors/get-all', {
                     headers: {
                         'Authorization': token && `Bearer ${token}`

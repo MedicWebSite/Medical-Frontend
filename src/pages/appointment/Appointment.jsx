@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Appointment.scss'
 import { AiFillHome } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
@@ -6,22 +6,29 @@ import { Link } from 'react-router-dom';
 import { FaPlus, FaQuoteRight } from "react-icons/fa";
 import { Carousel } from 'antd';
 
-const contentStyle = {
-  with: '200px',
-  margin: 0,
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
 
 const Appointment = () => {
+  const [numOfShots, setNumOfShots] = useState(2);
 
   const onChange = (currentSlide) => {
     console.log(currentSlide);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 800) {
+        setNumOfShots(1);
+      } else {
+        setNumOfShots(2);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const data = [1, 2, 3, 4]
 
@@ -41,7 +48,7 @@ const Appointment = () => {
         </div>
       </div>
       <div className='appoint-form-wrapper container'>
-        <div>
+        <div className='app-form-wrap'>
           <form className='appoint-form'>
             <p>Select Department</p>
             <select>
@@ -70,8 +77,9 @@ const Appointment = () => {
             <button className='form-btn'>SUBMIT</button>
           </form>
         </div>
-
-          <img className='doctor-img' src="https://medicate.peacefulqode.co.in/wp-content/uploads/2022/04/doctor-.png" alt="" />
+        <div className='doctor-imgg'>
+        <img src="https://medicate.peacefulqode.co.in/wp-content/uploads/2022/04/doctor-.png" alt="" />
+        </div>
       </div>
       <div className='cotact-us-wrapper'>
         <div className='cotact-us container'>
@@ -81,10 +89,10 @@ const Appointment = () => {
       </div>
       <div className="appoint-caruosel-wrapper">
         <strong>OUR CLIENTS</strong>
-        <h3>Our Client Happy Say About Us</h3>
-        <p className='appoint-desc'>It is a long established fact that a reader will be distracted by at its layout. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        <div className='appoint-carousel' >
-          <Carousel className='carousel-wrapperr' dots={true} slidesToShow={2} afterChange={onChange}>
+        <h3 className='container'>Our Client Happy Say About Us</h3>
+        <p className='appoint-desc container'>It is a long established fact that a reader will be distracted by at its layout. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div className='appoint-carousel container' >
+          <Carousel className='carousel-wrapperr' dots={true} slidesToShow={numOfShots} afterChange={onChange}>
             {data.map(item => (
               <div className='carusosel-itemm'>
                 <p className='caruosel-text'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even believable.There are many variations of passages of Lorem Ipsum available</p>

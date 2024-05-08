@@ -67,9 +67,11 @@ const Doctors = () => {
     }, [doctorsList])
 
     //  Render Doctors List from Array
+
     useEffect(() => {
         async function GetDoctors() {
             try {
+                
                 const response = await ApiInstance('/doctors/get-all', {
                     headers: {
                         'Authorization': token && `Bearer ${token}`

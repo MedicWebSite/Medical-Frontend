@@ -36,3 +36,13 @@
     place-items: center;
     font-size: 16px;
 }
+
+.patient-dashboard-carousel {
+    width: 100%;
+    margin: 60px auto;
+    .slick-track {
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 30px;
+    }
+}

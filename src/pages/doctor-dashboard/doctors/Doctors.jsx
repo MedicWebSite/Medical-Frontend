@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import './Doctors.scss'
 import ApiInstance from '../../../api'
@@ -31,8 +32,13 @@ const columns = [
         title: 'Action',
         dataIndex: 'action'
     },
-
-
+    {
+        title: 'Action',
+        dataIndex: <>
+        <button>Edit</button>
+        </>
+    }
+    
 ];
 const data = [];
 for (let i = 0; i < 46; i++) {
@@ -110,8 +116,8 @@ const Doctors = () => {
                     <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>Add Doctor</button>
                 </div>
             </div>
-            <Table objectKeys={objectKey} columnsData={columns} AllDoctorsList={doctorsList} />
-            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
+            <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
+            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
         </div>
     )
 }

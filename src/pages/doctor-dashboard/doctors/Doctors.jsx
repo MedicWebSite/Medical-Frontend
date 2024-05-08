@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import './Doctors.scss'
 import ApiInstance from '../../../api'
@@ -32,13 +31,8 @@ const columns = [
         title: 'Action',
         dataIndex: 'action'
     },
-    {
-        title: 'Action',
-        dataIndex: <>
-        <button>Edit</button>
-        </>
-    }
-    
+
+
 ];
 const data = [];
 for (let i = 0; i < 46; i++) {
@@ -73,11 +67,10 @@ const Doctors = () => {
     }, [doctorsList])
 
     //  Render Doctors List from Array
-
     useEffect(() => {
         async function GetDoctors() {
             try {
-
+                
                 const response = await ApiInstance('/doctors/get-all', {
                     headers: {
                         'Authorization': token && `Bearer ${token}`
@@ -112,12 +105,12 @@ const Doctors = () => {
                     />
                 </form>
                 <div className='add__doctor-action'>
-                    <span nClick={() => setOpenDoctorModal(true)} className='material-symbols-outlined'>add</span>
+                    <span onClick={() => setOpenDoctorModal(true)} className='material-symbols-outlined'>add</span>
                     <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>Add Doctor</button>
                 </div>
             </div>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
-            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
+            <Table objectKeys={objectKey} columnsData={columns} AllDoctorsList={doctorsList} />
+            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
         </div>
     )
 }

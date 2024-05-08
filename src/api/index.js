@@ -8,17 +8,17 @@ export const ApiInstance = axios.create({
   },
 });
 
-
-// ApiInstance.interceptors.request.use(
-//   (setconfig) => {
-//     if (setconfig.url !== "/auth/login")
-//       setconfig.headers["Authorization"] = `Token ${Cookies.get("user-token")}`;
-//     return setconfig;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
-
+ApiInstance.interceptors.request.use(
+  (setconfig) => {
+    if (setconfig.url !== "/auth/login")
+      setconfig.headers["Authorization"] = `Bearer ${Cookies.get(
+        "user-token"
+      )}`;
+    return setconfig;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default ApiInstance;

@@ -33,10 +33,10 @@ const columns = [
     {
         title: 'Action',
         dataIndex: <>
-        <button>Edit</button>
+            <button>Edit</button>
         </>
     }
-    
+
 ];
 const data = [];
 for (let i = 0; i < 46; i++) {
@@ -130,7 +130,9 @@ const Doctors = () => {
                 <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>+</button>
             </div>
             <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
-            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
-
+            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
+        </div>
+    )
+}
 
 export default Doctors

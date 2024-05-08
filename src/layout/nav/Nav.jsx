@@ -44,7 +44,6 @@ const Nav = () => {
 
 
   const isRegistered = JSON.parse(localStorage.getItem('user'))
-  console.log(isRegistered);
 
   const { pathname } = useLocation()
 

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './Doctors.scss'
 import ApiInstance from '../../../api'
-import { Button, Table } from 'antd'
 import { AddDoctorModal } from '../../../utils/Utils';
+import Table from '../../../components/table/Table';
+import { Input, Space } from 'antd';
+const { Search } = Input;
 
 const columns = [
     {
@@ -29,13 +31,8 @@ const columns = [
         title: 'Action',
         dataIndex: 'action'
     },
-    {
-        title: 'Action',
-        dataIndex: <>
-        <button>Edit</button>
-        </>
-    }
-    
+
+
 ];
 const data = [];
 for (let i = 0; i < 46; i++) {
@@ -46,8 +43,8 @@ for (let i = 0; i < 46; i++) {
         address: `London, Park Lane no. ${i}`,
         action:
             <>
-                <Button>Delete</Button>
-                <Button >Edit</Button>
+                <button>Delete</button>
+                <button >Edit</button>
             </>
     });
 }
@@ -56,17 +53,20 @@ for (let i = 0; i < 46; i++) {
 const Doctors = () => {
     const token = localStorage.getItem('token') && localStorage.getItem('token')
     // HOOKS
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [doctorsList, setDoctorsList] = useState([])
+    const [objectKey, setObjectKey] = useState(null)
     const [openDoctorModal, setOpenDoctorModal] = useState(false)
-    console.log(doctorsList);
 
+    // Get Object Keys
+    useEffect(() => {
+        const allKeys = doctorsList.reduce((keys, doctor) => {
+            return keys.concat(Object.keys(doctor))
+        }, [])
+        const uniqueKeys = [...new Set(allKeys)]
+        setObjectKey(uniqueKeys)
+    }, [doctorsList])
 
-    const onSelectChange = (newSelectedRowKeys) => {
-        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-        setSelectedRowKeys(newSelectedRowKeys);
-    };
-
+    //  Render Doctors List from Array
     useEffect(() => {
         async function GetDoctors() {
             try {
@@ -84,52 +84,32 @@ const Doctors = () => {
         }
         GetDoctors()
     }, [])
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-        selections: [
-            Table.SELECTION_ALL,
-            Table.SELECTION_INVERT,
-            Table.SELECTION_NONE,
-            {
-                key: 'odd',
-                text: 'Select Odd Row',
-                onSelect: (changeableRowKeys) => {
-                    let newSelectedRowKeys = [];
-                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-                        if (index % 2 !== 0) {
-                            return false;
-                        }
-                        return true;
-                    });
-                    setSelectedRowKeys(newSelectedRowKeys);
-                },
-            },
-            {
-                key: 'even',
-                text: 'Select Even Row',
-                onSelect: (changeableRowKeys) => {
-                    let newSelectedRowKeys = [];
-                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-                        if (index % 2 !== 0) {
-                            return true;
-                        }
-                        return false;
-                    });
-                    setSelectedRowKeys(newSelectedRowKeys);
-                },
-            },
-        ],
-    };
+
+
+    const onSearch = (value, _e, info) => console.log(info?.source, value);
 
     return (
         <div className='doctors-content'>
             <div className="doctors__content-navigation">
                 <h3 className='doctors-subtitle'>Manage Doctors</h3>
-                <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>+</button>
             </div>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={doctorsList} />
-            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal}/>
+            <div className="content-actions">
+                <form>
+                    <Search
+                        placeholder="Search Doctor..."
+                        allowClear
+                        enterButton="Search"
+                        size="large"
+                        onSearch={onSearch}
+                    />
+                </form>
+                <div className='add__doctor-action'>
+                    <span nClick={() => setOpenDoctorModal(true)} className='material-symbols-outlined'>add</span>
+                    <button onClick={() => setOpenDoctorModal(true)} className='add__doctor-btn'>Add Doctor</button>
+                </div>
+            </div>
+            <Table objectKeys={objectKey} columnsData={columns} AllDoctorsList={doctorsList} />
+            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
         </div>
     )
 }

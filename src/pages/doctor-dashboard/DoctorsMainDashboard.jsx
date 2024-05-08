@@ -57,7 +57,7 @@ const DoctorsMainDashboard = () => {
                             {
                                 key: '4',
                                 icon: <TeamOutlined />,
-                                label: <Link to={'stuff'}>Stuff</Link>,
+                                label: <Link to={'users'}>Users</Link>,
                             }
                         ]}
                     />

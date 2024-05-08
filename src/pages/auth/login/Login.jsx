@@ -53,6 +53,7 @@ const Login = () => {
                         <input type="submit" value="Login" />
                     </div>
                     <p className='exist__account-text'>
+                        
                         If you don't have an account?
                         <Link to={'/auth/register'} className='check-link'>Register</Link>
                     </p>

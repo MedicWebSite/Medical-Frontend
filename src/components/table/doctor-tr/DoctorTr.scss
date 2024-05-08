@@ -1,0 +1,43 @@
+.body-row{
+    height: 50px;
+    vertical-align: middle !important;
+    td{
+        font-size: 14px;
+        font-weight: 600;
+        max-width: 70px !important;
+        white-space: nowrap;
+    }
+    td:not(:last-child){
+        overflow-x: auto;
+    }
+    td::-webkit-scrollbar{
+        height: 1px;
+    }
+}
+.row-action{
+    margin-top: 5px;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    span{
+        padding: 4px 6px;
+        border-radius: 6px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--light-color);
+        transition: .2s;
+        cursor: pointer;
+    }
+    .edit-icon{
+        background-color: #FFA21D;
+    }
+    .delete-icon{
+        background-color: #FF3A6E;
+    }
+    
+}
+.body-row:nth-child(even){
+    background-color: #f3f3f3;
+}

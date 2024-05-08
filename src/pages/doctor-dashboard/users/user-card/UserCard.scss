@@ -1,0 +1,41 @@
+.user-card {
+    max-width: 220px;
+    width: 100%;
+    padding: 2.5rem 1.2rem;
+    border-radius: 10px;
+    height: fit-content;
+    text-align: center;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    .user-role {
+        position: absolute;
+        top: 6%;
+        left: 6%;
+        background-color: var(--primary-light-color);
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--light-color);
+        padding: 5px 10px;
+    }
+
+    img {
+        max-width: 140px;
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .user-name {
+        margin-top: 6px;
+        font-size: 20px;
+    }
+
+    .user-email {
+        font-size: 13px;
+        margin-top: 5px;
+        font-weight: 600;
+    }
+}

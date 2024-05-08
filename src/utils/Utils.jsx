@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import "./Utils.scss"
 import { DatePicker, Form, Radio, Select } from 'antd';
+import { useCreateDoctor } from "../service/mutation/useCreateDoctor";
+import { client } from "../service/QueryClient";
 
 const Container = ({ children }) => {
   return (
@@ -36,6 +38,9 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
     const [gender, setGender] = useState('')
     const [specialization, setSpecialization] = useState("")
 
+
+    const {mutate} = useCreateDoctor()
+
   useEffect(() => {
     if (openDoctorModal) {
       document.body.style.overflow = 'hidden'
@@ -51,22 +56,26 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
     const DoctorData = {
       firstName: firstName,
       lastName: lastName,
-      dateOfBirth: dateOfBirth,
-      gender: gender,
+      dateOfBirth: new Date(dateOfBirth).toISOString(),
+      gender: Number(gender),
       specialization: specialization,
       address: address,
+      hospitalId: 2,
       contactNumber: contactNumber,
       email: email
     }
     console.log(DoctorData);
+
+    mutate(DoctorData, {
+      onSuccess: (res) => {
+        console.log(res);
+        client.invalidateQueries('doctors')
+      }
+    })
+
+
   }
 
-
-  const handleDateChange = (e) => {
-    setDateOfBirth(e.date)
-  }
-
-  
 
   return (
     <div onClick={() => setOpenDoctorModal(true)} style={openDoctorModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
@@ -102,29 +111,30 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
                 id="doctor-specialization"
                 defaultValue="Select Specialization"
                 style={{ width: '100%' }}
-                onChange={(selectedOption) => setSpecialization(selectedOption.value)}
+                onChange={(selectedOption) => setSpecialization(selectedOption)}
                 options={specializationData}
               />
             </label>
           </div>
           <div className="form-item">
             <label htmlFor="license-number">Birthday
-            <DatePicker  onChange={handleDateChange}/>
+            <input type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
+            {/* <DatePicker  onChange={handleDateChange}/> */}
             </label>
             <div className="select-gender">
               <h5 className="gender-title">Gender</h5>
               <div className="gender-item">
                 <label htmlFor="male">Male
-                  <input onChange={(e) => setGender(e.target.value)} name="gender" type="radio" value='male' />
+                  <input onChange={(e) => setGender(e.target.value)} name="gender" type="radio" value={0} />
                 </label>
                 <label htmlFor="female" >Female
-                  <input onChange={(e) => setGender(e.target.value)} name="gender" type="radio" value='female' />
+                  <input onChange={(e) => setGender(e.target.value)} name="gender" type="radio" value={1} />
                 </label>
               </div>
             </div>
           </div>
           <div className="form__action-btns">
-            <button type="button" onClick={() => setOpenDoctorModal(false)} className="cancel-btn">Cancel</button>
+            <button type="button" onClick={() => setOpenDoctorModal(!openDoctorModal)} className="cancel-btn">Cancel</button>
             <button type="submit" className="create-btn">Create</button>
           </div>
         </form>

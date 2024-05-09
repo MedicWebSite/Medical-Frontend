@@ -41,3 +41,36 @@
 .body-row:nth-child(even){
     background-color: #f3f3f3;
 }
+
+.delete-modal{
+    top: 35%;
+    position: relative;
+    font-size: 20px;
+    .warning-icon{
+        position: absolute;
+        top: 14%;
+        left: 3%;
+        font-size: 28px;
+        color: red;
+    }
+    .modal-subtitle{
+        margin-left: 1.5rem;
+        font-size: 22px;
+    }
+    .delete-text{
+        font-size: 17px;
+        font-weight: 500;
+        margin-left: 1.5rem;
+    }
+    .delete-btn{
+        background-color: red;
+        color: var(--light-color);
+        border: 6px;
+        font-weight: 500;
+        &:hover{
+            color: var(--light-color) !important;
+            background-color: rgb(247, 68, 68) !important;
+        }
+
+    }
+}

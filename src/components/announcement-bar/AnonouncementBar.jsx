@@ -5,9 +5,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router-dom';
 
 const AnonouncementBar = () => {
+
+  const userAuth = JSON.parse(localStorage.getItem('user'))
+  console.log(userAuth);
+
   const { pathname } = useLocation()
   if (pathname.includes("patient")) return null
   if (pathname.includes("doctor")) return null
+
 
   return pathname.includes('auth') ? null : (
     <div className='announcement'>
@@ -28,7 +33,11 @@ const AnonouncementBar = () => {
               <button>RUS</button>
               <button>ENG</button>
             </div>
-            <Link className='auth-link' to={'/auth/register'}> <span className='material-symbols-outlined'>person</span> Register</Link>
+            {
+              userAuth.Role === 'User' ? <Link className='auth-link' to={'/patient'}> <span className='material-symbols-outlined'>account_circle</span> Account</Link>
+                : userAuth.Role === 'Admin' ? <Link className='auth-link' to={'/doctor'}> <span className='material-symbols-outlined'>account_circle</span> Account</Link>
+                  : <Link className='auth-link' to={'/auth/register'}> <span className='material-symbols-outlined'>person</span> Register</Link>
+            }
           </div>
 
         </div>

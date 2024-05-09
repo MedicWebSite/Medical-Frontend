@@ -15,31 +15,31 @@ const Container = ({ children }) => {
 export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
 
   const specializationData = [
-      { "value": "cardiologist", "label": "Cardiologist" },
-      { "value": "dermatologist", "label": "Dermatologist" },
-      { "value": "endocrinologist", "label": "Endocrinologist" },
-      { "value": "gastroenterologist", "label": "Gastroenterologist" },
-      { "value": "neurologist", "label": "Neurologist" },
-      { "value": "oncologist", "label": "Oncologist" },
-      { "value": "ophthalmologist", "label": "Ophthalmologist" },
-      { "value": "orthopedic_surgeon", "label": "Orthopedic Surgeon" },
-      { "value": "pediatrician", "label": "Pediatrician" },
-      { "value": "psychiatrist", "label": "Psychiatrist" },
-      { "value": "urologist", "label": "Urologist" }
-    ]
+    { "value": "cardiologist", "label": "Cardiologist" },
+    { "value": "dermatologist", "label": "Dermatologist" },
+    { "value": "endocrinologist", "label": "Endocrinologist" },
+    { "value": "gastroenterologist", "label": "Gastroenterologist" },
+    { "value": "neurologist", "label": "Neurologist" },
+    { "value": "oncologist", "label": "Oncologist" },
+    { "value": "ophthalmologist", "label": "Ophthalmologist" },
+    { "value": "orthopedic_surgeon", "label": "Orthopedic Surgeon" },
+    { "value": "pediatrician", "label": "Pediatrician" },
+    { "value": "psychiatrist", "label": "Psychiatrist" },
+    { "value": "urologist", "label": "Urologist" }
+  ]
 
-    // HOOKS
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [address, setAddress] = useState("")
-    const [dateOfBirth, setDateOfBirth] = useState()
-    const [contactNumber, setContactNumber] = useState()
-    const [gender, setGender] = useState('')
-    const [specialization, setSpecialization] = useState("")
+  // HOOKS
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [dateOfBirth, setDateOfBirth] = useState()
+  const [contactNumber, setContactNumber] = useState()
+  const [gender, setGender] = useState('')
+  const [specialization, setSpecialization] = useState("")
 
 
-    const {mutate} = useCreateDoctor()
+  const { mutate } = useCreateDoctor()
 
   useEffect(() => {
     if (openDoctorModal) {
@@ -78,7 +78,7 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
 
 
   return (
-    <div onClick={() => setOpenDoctorModal(true)} style={openDoctorModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
+    <div style={openDoctorModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
 
       <div className="add__doctor-modal">
         <h3 className="modal-title">Create New doctor</h3>
@@ -90,7 +90,7 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
             <label htmlFor="lastname">Lastname
               <input onChange={(e) => setLastName(e.target.value)} type="text" id="lastname" placeholder="Enter Doctor Lastname" />
             </label>
-         
+
           </div>
           <div className="form-item">
             <label htmlFor="doctor-phone">Phone
@@ -101,13 +101,13 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
             </label>
           </div>
           <div className="form-item">
-            
+
             <label htmlFor="address">Address
               <input onChange={(e) => setAddress(e.target.value)} type="text" id="address" placeholder="Enter Doctor Address" />
             </label>
             <label htmlFor="doctor-specialization">Specialization
               <Select
-              className="specialization-select"
+                className="specialization-select"
                 id="doctor-specialization"
                 defaultValue="Select Specialization"
                 style={{ width: '100%' }}
@@ -118,8 +118,8 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
           </div>
           <div className="form-item">
             <label htmlFor="license-number">Birthday
-            <input type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
-            {/* <DatePicker  onChange={handleDateChange}/> */}
+              <input type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
+              {/* <DatePicker  onChange={handleDateChange}/> */}
             </label>
             <div className="select-gender">
               <h5 className="gender-title">Gender</h5>

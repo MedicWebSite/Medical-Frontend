@@ -10,6 +10,11 @@ justify-content: space-between;
     font-weight: 500;
 }
 
+.select-specialization{
+    max-width: 200px;
+    width: 100%;
+}
+
 .add__doctor-action{
     display: flex;
     align-items: center;
@@ -34,5 +39,20 @@ justify-content: space-between;
         font-size: 15px;
         color: var(--light-color);
         font-weight: 600;
+    }
+}
+
+.doctor__content-actions{
+    margin-top: 1rem;
+    display: flex !important;
+    align-items: center !important;
+    // justify-content: flex-start !important;
+   
+}
+.doctor__content-actions > .search__form-wrapper{
+    width: 100% !important;
+    flex: 1;
+    .search-form{
+        width: 100% !important;
     }
 }

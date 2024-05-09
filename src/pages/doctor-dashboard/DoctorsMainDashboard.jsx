@@ -41,7 +41,7 @@ const DoctorsMainDashboard = () => {
                             {
                                 key: '1',
                                 icon: <AppstoreOutlined />,
-                                label: <Link to={'main'}>Doctors</Link>,
+                                label: <Link to={''}>Doctors</Link>,
                             },
                             {
                                 key: '2',

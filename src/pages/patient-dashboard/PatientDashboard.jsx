@@ -41,7 +41,7 @@ const PatientDashboard = () => {
                             {
                                 key: '1',
                                 icon: <AppstoreOutlined />,
-                                label: <Link to={'main'}>Main</Link>,
+                                label: <Link to={''}>Main</Link>,
                             },
                             {
                                 key: '2',

@@ -2,7 +2,6 @@ import './Table.scss'
 import DoctorTr from './doctor-tr/DoctorTr'
 
 const Table = ({objectKeys, columnsData, AllDoctorsList}) => {
-    console.log(objectKeys);
     return (
         <table>
             <thead>

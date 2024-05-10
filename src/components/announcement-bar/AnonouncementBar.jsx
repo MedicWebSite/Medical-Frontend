@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom';
 const AnonouncementBar = () => {
 
   const userAuth = JSON.parse(localStorage.getItem('user'))
-  console.log(userAuth);
 
   const { pathname } = useLocation()
   if (pathname.includes("patient")) return null

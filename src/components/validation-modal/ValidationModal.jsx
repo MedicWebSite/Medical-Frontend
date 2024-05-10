@@ -5,10 +5,8 @@ import ApiInstance from "../../api";
 const ValidationModal = ({ openModal }) => {
 
   const validateEmail = localStorage.getItem("validate-email")
-  console.log(validateEmail);
   // ------ HOOKS ------------
   const [code, setCode] = useState('');
-  console.log(code);
 
   const inputRefs = [
     useRef(),
@@ -86,7 +84,6 @@ const ValidationModal = ({ openModal }) => {
     }
     try {
       const response = await ApiInstance.post('auth/register/verify', validateData)
-      console.log(response);
     } 
     catch (error) {
       console.log(error);  

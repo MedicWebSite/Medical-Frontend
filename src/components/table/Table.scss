@@ -32,3 +32,11 @@ table > thead > tr{
         width: 100%;
     }
 }
+
+.table-skeleton{
+    margin-top: 1rem;
+    width: 100% ;
+    .skeleton-item{
+        width: 100%;
+    }
+}

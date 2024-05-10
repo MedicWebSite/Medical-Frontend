@@ -21,8 +21,8 @@
 
 }
 
-.add__doctor-modal {
-    max-width: 800px;
+.add__doctor-modal, .add__user-modal {
+    max-width: 750px;
     width: 100%;
     background-color: hsl(0, 0%, 100%);
     padding: 1.2rem;
@@ -76,6 +76,10 @@
     .specialization-select{
         height: 40px;
     }
+}
+.password-item{
+    max-width: 250px !important;
+    width: 100% !important;
 }
 .password-item{
     max-width: 370px;

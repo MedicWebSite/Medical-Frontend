@@ -39,7 +39,7 @@ const DoctorTr = ({ doctorItem }) => {
         <span onClick={() => { setIsModalOpen(true); setDoctorId(doctorItem.id); setDoctorName(doctorItem.firstName) }} className='material-symbols-outlined delete-icon'>Delete</span>
       </td>
       <Modal className='delete-modal' title={<h5 className='modal-subtitle'>Delete Doctor ?</h5>} open={isModalOpen} onOk={handleDelete} okText={<Button className='delete-btn'>Delete</Button>} okType='none' onCancel={() => setIsModalOpen(false)}>
-        <span className='material-symbols-outlined warning-icon'>warning</span>
+        <span className=' material-symbols-outlined warning-icon'>warning</span>
         <p className='delete-text'>{`Are you sure you want to delete user ${doctorName} `}?</p>
 
       </Modal>

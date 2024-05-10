@@ -3,14 +3,15 @@ import { useState } from 'react'
 import { Tooltip, Input, Skeleton } from 'antd';
 import UserCard from './user-card/UserCard';
 import { useGetUsers } from '../../../service/query/useGetUsers';
+import { AddUserModal } from '../../../utils/Utils';
 const { Search } = Input;
 
 
 const Users = () => {
   const [searchValue, setSearchValue] = useState('')
+  const [openUserModal, setOpenUserModal] = useState(false)
 
-  const { data, isLoading, isError, isFetched } = useGetUsers('/users/get-all')
-  console.log(isLoading, isFetched);
+  const { data, isLoading,  isFetched } = useGetUsers('/users/get-all')
   const filteredData = data?.filter(item => item.firstname?.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
@@ -32,9 +33,10 @@ const Users = () => {
             <span className='tooltip-icon material-symbols-outlined'>list</span>
           </Tooltip>
           <Tooltip className='action-tooltip' placement='top' title="Create">
-            <span className='tooltip-icon material-symbols-outlined'>add</span>
+            <span onClick={() => setOpenUserModal(true)} className='tooltip-icon material-symbols-outlined'>add</span>
           </Tooltip>
         </div>
+        <AddUserModal openUserModal={openUserModal} setOpenUserModal={setOpenUserModal}/>
       </div>
       <div className="users__card-wrapper">
       {

@@ -29,7 +29,6 @@ const Login = () => {
     const handleLogin = (values) => {
         mutate(values, {
             onSuccess: (res) => {
-                console.log(res.data);
                 localStorage.setItem('token', res?.data)
                 const user = jwtDecode(res?.data)
                 console.log(jwtDecode(res?.data));

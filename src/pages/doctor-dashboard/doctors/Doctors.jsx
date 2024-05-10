@@ -106,7 +106,6 @@ const Doctors = () => {
 
     const searchedData = doctorsList.filter(doctor => doctor?.firstName?.toLowerCase().includes(inputValue.toLowerCase()))
     const orderedData = doctorsList.filter(doctor => doctor?.specialization.toLowerCase() === orderedValue.toLowerCase())
-    console.log(orderedData);
 
     return (
         <div className='doctors-content'>

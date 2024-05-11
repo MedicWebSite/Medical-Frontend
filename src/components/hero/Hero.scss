@@ -24,15 +24,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.253);    
+    background-color: rgba(0, 0, 0, 0.144); 
+background: linear-gradient(209deg, rgba(59, 59, 59, 0.144) 0%, rgba(255, 255, 255, 0.13) 39%, rgba(0, 0, 0, 0.699) 100%);   
 }
 
 
 .hero-content{
     position: absolute ;
-    top: 23%;
-    left: 25%;
-    text-align: center;
+    top: 15%;
+    left: 5%;
+    text-align: left;
     z-index: 5 !important;
     .content-subtitle{
         width: fit-content;
@@ -47,16 +48,28 @@
         margin-top: 1.6rem;
         font-size: 50px;
         color: var(--light-color);
-        max-width: 700px;
+        max-width: 500px;
         letter-spacing: .6px;
-        line-height: 4.3rem;
+        font-weight: 400;
+        line-height: 4rem;
+        .second-line{
+            font-weight: 800;
+        }
+    }
+    .content-text{
+        font-size: 15px;
+        font-weight: 500;
+        max-width: 700px;
+        color: var(--light-color);
+        margin-top: 1rem;
+        line-height: 22px;
     }
 }
 
 .content-links{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     column-gap: 2.5rem;
     margin-top: 2rem;
     z-index: 10 !important;

@@ -110,6 +110,16 @@
     }
 }
 
+.update__user-modal{
+    .update-subtitle{
+        font-size: 20px;
+    }
+    .update-btn{
+        background-color: var(--primary-light-color) !important;
+        color: var(--light-color) !important;
+    }
+}
+
 .update-form{
     width: 100%;
 }

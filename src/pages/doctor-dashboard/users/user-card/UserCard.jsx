@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import './UserCard.scss'
-import { Button, Divider, Modal } from 'antd'
+import { Button, Divider, Modal,notification, Space } from 'antd'
 import { useDeleteUser } from '../../../../service/mutation/useDeleteUser'
 import { UpdateUserModal } from '../../../../utils/Utils'
+import { useUpdateUser } from '../../../../service/mutation/useUpdateUser'
+import { toast } from 'react-toastify'
 
 const UserCard = ({ userItem }) => {
     const [deleteModal, setDeleteModal] = useState(false)
@@ -14,6 +16,15 @@ const UserCard = ({ userItem }) => {
     const [updatingLastname, setUpdatingLastname] = useState('')
     const [userId, setUserId] = useState('')
 
+    const [success, successContext] = notification.useNotification()
+
+
+    const openSuccessNotification = (placement) => {
+        success.info({
+            message: 'User updated successfully'
+        })
+    }
+
     useEffect(() => {
         setUpdatingFirstname(currentUser?.firstname)
         setUpdatingLastname(currentUser?.lastname)
@@ -23,7 +34,10 @@ const UserCard = ({ userItem }) => {
     console.log(updatingFirstname);
 
 
-    const { mutate } = useDeleteUser()
+    const { mutate: mutateDelete } = useDeleteUser()
+    const {mutate: mutateUpdate} = useUpdateUser()
+   
+    
 
     const clickOutside = useRef()
 
@@ -41,7 +55,7 @@ const UserCard = ({ userItem }) => {
 
 
     const handleDeleteUser = () => {
-        mutate(userId, {
+        mutateDelete(userId, {
             onSuccess: (res) => {
                 res.statusCode === 200 && setDeleteModal(false)
             }
@@ -62,7 +76,19 @@ const UserCard = ({ userItem }) => {
             lastname: updatingLastname,
             dateOfBirth: new Date(updatingBirthday).toISOString()
         }
-        console.log('Yangilangan User--: ', updatedUser);
+        mutateUpdate(updatedUser, {
+            onSuccess:(res) =>{
+                if(res.status === 200){
+                     setUpdateUserModal(false)
+                    toast.success('User updated successfully',{
+                        position: 'top-right',
+                        autoClose: 3000,
+                        // progress: 'undefined'
+                    })
+                } 
+                    console.log(res);
+            }
+        })
     }
 
     return (
@@ -94,7 +120,7 @@ const UserCard = ({ userItem }) => {
                     <p className='modal-text'>This action can not bu undone. Do you want to continue ?</p>
                 </Modal>
             </div>
-            <Modal open={updateUpdateModal} title={<h5>Update</h5>} onCancel={() => setUpdateUserModal(false)} okType='none' okText={<Button onClick={handleUpdateUser}>Update</Button>} className='update__user-modal'>
+            <Modal open={updateUpdateModal} title={<h5 className='update-subtitle'>Update</h5>} onCancel={() => setUpdateUserModal(false)} okType='none' okText={<Button className='update-btn' onClick={handleUpdateUser}>Update</Button>} className='update__user-modal'>
                 <Divider />
                 <form  className='update-form'>
                     <label className='update__form-item' htmlFor="firstname">Firstname

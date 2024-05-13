@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './UserCard.scss'
-import { Button, Divider, Modal, notification, message, Upload, Image } from 'antd'
+import { Button, Divider, Modal, notification, message, Upload, Image, Form, Input, DatePicker } from 'antd'
 import { useDeleteUser } from '../../../../service/mutation/useDeleteUser'
 import { UpdateUserModal } from '../../../../utils/Utils'
 import { useUpdateUser } from '../../../../service/mutation/useUpdateUser'
@@ -8,11 +8,11 @@ import { toast } from 'react-toastify'
 import { PlusOutlined } from '@ant-design/icons';
 import { UploadOutlined } from '@ant-design/icons';
 import { client } from '../../../../service/QueryClient'
-
+import { useForm } from 'react-hook-form'
 const UserCard = ({ userItem }) => {
-
+    const { register, handleSubmit } = useForm()
     const token = localStorage.getItem('token')
-
+    const { mutate } = useUpdateUser()
     // --- STATE HOOKS ---
     const clickOutside = useRef()
     const [userId, setUserId] = useState('')
@@ -26,7 +26,7 @@ const UserCard = ({ userItem }) => {
     const [updatingLastname, setUpdatingLastname] = useState('')
     const [updatePhoto, setUpdatePhoto] = useState(null)
     const [photoUrl, setPhotourl] = useState(null)
-
+    const [fileList, setFileList] = useState([]);
     const [updateUpdateModal, setUpdateUserModal] = useState(false)
     const [updatingFirstname, setUpdatingFirstname] = useState(currentUser?.firstname)
 
@@ -88,31 +88,36 @@ const UserCard = ({ userItem }) => {
     }
 
     // --- Update User Function ---
-    const handleUpdateUser = (e) => {
-        e.preventDefault()
-   
-
+    const handleUpdateUser = (values) => {
         const formData = new FormData();
-        formData.append('Id', currentUser?.id);
-        formData.append('Firstname', updatingFirstname);
-        formData.append('Lastname', updatingLastname);
-        formData.append('DateOfBirth', new Date(updatingBirthday && updatingBirthday).toISOString());
-        formData.append('ImagePath', updatePhoto || null)
-
+        formData.append('Id', userItem?.id);
+        formData.append('Firstname', values?.firstname);
+        formData.append('Lastname', values?.lastname);
+        formData.append('DateOfBirth', new Date(values?.dateofbirth).toISOString());
+        formData.append('ImagePath', values?.image?.file || null)
         console.log(formData);
 
-        fetch('http://45.138.158.240:4040/api/users/update', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            },
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
+        // fetch('http://45.138.158.240:4040/api/users/update', {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data',
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: formData
+        // })
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.log(error))
 
+
+        mutate(formData, {
+            onSuccess: (res) => {
+                // res.statusCode === 200 && setUpdateUserModal(false)
+                // client.invalidateQueries({ queryKey: ['get-users'] })
+                console.log(res);
+            },
+            onError: (error) => console.log(error)
+        })
     }
 
     // ---- Upload Image ----
@@ -170,29 +175,96 @@ const UserCard = ({ userItem }) => {
                     <p className='modal-text'>This action can not bu undone. Do you want to continue ?</p>
                 </Modal>
             </div>
-            <Modal open={updateUpdateModal} title={<h5 className='update-subtitle'>Update</h5>} onCancel={() => setUpdateUserModal(false)} okType='none' okText={<Button className='update-btn' onClick={handleUpdateUser}>Update</Button>} className='update__user-modal'>
+            <Modal open={updateUpdateModal} title={<h5 className='update-subtitle'>Update</h5>} onCancel={() => setUpdateUserModal(false)} okType='none' className='update__user-modal'>
                 <Divider />
-                <form className='update-form'>
-                   <div className="form-header">
-                    {
-                        photoUrl ? <img src={photoUrl } />
-                        : <h4 className='user-name'>{currentUser?.firstname[0]}</h4>
-                    }
-                   </div>
-                    <label className='update__form-item' htmlFor="firstname">Firstname
-                        <input onChange={(e) => setUpdatingFirstname(e.target.value)} type="text" id='firstname' value={updatingFirstname} />
-                    </label>
-                    <label className='update__form-item' htmlFor="lastname">Lastname
-                        <input onChange={(e) => setUpdatingLastname(e.target.value)} type="text" id='lastname' value={updatingLastname} />
-                    </label>
-                    <label className='update__form-item' htmlFor="date">Birthday
-                        <input onChange={(e) => setUpdatingBirthday(e.target.value)} type="date" id='date' value={updatingBirthday} />
-                    </label>
-                    <label className='update__form-item' htmlFor="photo">Profile Photo
-                        <input onChange={handleUploadPhoto} type="file" id='photo' />
-                    </label>
+                <Form
+                    name="basic"
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 16,
+                    }}
+                    style={{
+                        maxWidth: 600,
+                    }}
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={handleUpdateUser}
+                    autoComplete="off"
+                    layout="vertical"
+                >
+                    <Form.Item
+                        label="FirstName"
+                        name="firstname"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your username!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
 
-                </form>
+                    <Form.Item
+                        label="LastName"
+                        name="lastname"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Date of Birth"
+                        name="dateofbirth"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                    >
+                        <DatePicker />
+                    </Form.Item>
+                    <Form.Item name={'image'} label="Image">
+                        <Upload.Dragger
+                            headers={{ "Access-Control-Allow-Origin": "*" }}
+                            multiple={false}
+                            listType="picture"
+                            action={"https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"}
+                            accept=".png,.jpeg"
+                            showUploadList={true}
+                            beforeUpload={(file) => {
+                                console.log({ file });
+                                return false
+                            }}
+                            fileList={fileList}
+                            onChange={({ fileList: newFileList }) => setFileList(newFileList)}
+                        >
+                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                            <p className="ant-upload-hint">
+                                Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                                banned files.
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Modal>
 
         </>

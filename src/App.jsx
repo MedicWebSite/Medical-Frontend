@@ -7,8 +7,8 @@ import RouteController from './routes/RouteController';
 function App() {
   return (
     <div className="App">
-      <AnonouncementBar/>
-      <Nav />
+      {/* <AnonouncementBar/> */}
+      {/* <Nav /> */}
       <RouteController />
       <Footer />
     </div>

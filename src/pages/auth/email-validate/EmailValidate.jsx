@@ -14,7 +14,6 @@ const EmailValidate = () => {
     try {
       const response = await ApiInstance.post(`/auth/register/send-code?mail=${validationEmail}`)
       if(response.status === 200){
-        console.log(response);
         setOpenModal(true)
         localStorage.setItem("validate-email",  validationEmail)
       }

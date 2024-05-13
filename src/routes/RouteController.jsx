@@ -36,13 +36,13 @@ const RouteController = () => {
       <Route path='appointment' element={<Appointment />} />
 
       <Route path='patient' element={<PatientDashboard />}>
-        <Route index path='main' element={<MainDashboard />} />
+        <Route index  element={<MainDashboard />} />
         <Route path="book-appointment" element={<BookAppoinment />} />
         <Route path='my-appointment' element={<PatientAppointments />} />
         <Route path='my-settings' element={<PatientSettings />} />
       </Route>
       <Route path='doctor' element={<DoctorsMainDashboard />}>
-        <Route index path='main' element={<Doctors />} />
+        <Route index element={<Doctors />} />
         <Route path="patients" element={<Patients />} />
         <Route path='appointments' element={<Appointments />} />
         <Route path='users' element={<Users />} />

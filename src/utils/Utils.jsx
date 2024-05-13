@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import "./Utils.scss"
-import { DatePicker, Form, Radio, Select } from 'antd';
+import { DatePicker, Form, Radio, Select, Modal } from 'antd';
 import { useCreateDoctor } from "../service/mutation/useCreateDoctor";
 import { client } from "../service/QueryClient";
+import { useCreateUser } from "../service/mutation/useCreateUser";
 
+
+// CONTAINER CONTENT
 const Container = ({ children }) => {
   return (
     <div className="container">
@@ -11,35 +14,39 @@ const Container = ({ children }) => {
     </div>
   )
 }
+export default Container
 
+
+
+// --- ADD A NEW DOCTOR MODAL ---
 export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
 
   const specializationData = [
-      { "value": "cardiologist", "label": "Cardiologist" },
-      { "value": "dermatologist", "label": "Dermatologist" },
-      { "value": "endocrinologist", "label": "Endocrinologist" },
-      { "value": "gastroenterologist", "label": "Gastroenterologist" },
-      { "value": "neurologist", "label": "Neurologist" },
-      { "value": "oncologist", "label": "Oncologist" },
-      { "value": "ophthalmologist", "label": "Ophthalmologist" },
-      { "value": "orthopedic_surgeon", "label": "Orthopedic Surgeon" },
-      { "value": "pediatrician", "label": "Pediatrician" },
-      { "value": "psychiatrist", "label": "Psychiatrist" },
-      { "value": "urologist", "label": "Urologist" }
-    ]
+    { "value": "cardiologist", "label": "Cardiologist" },
+    { "value": "dermatologist", "label": "Dermatologist" },
+    { "value": "endocrinologist", "label": "Endocrinologist" },
+    { "value": "gastroenterologist", "label": "Gastroenterologist" },
+    { "value": "neurologist", "label": "Neurologist" },
+    { "value": "oncologist", "label": "Oncologist" },
+    { "value": "ophthalmologist", "label": "Ophthalmologist" },
+    { "value": "orthopedic_surgeon", "label": "Orthopedic Surgeon" },
+    { "value": "pediatrician", "label": "Pediatrician" },
+    { "value": "psychiatrist", "label": "Psychiatrist" },
+    { "value": "urologist", "label": "Urologist" }
+  ]
 
-    // HOOKS
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [address, setAddress] = useState("")
-    const [dateOfBirth, setDateOfBirth] = useState()
-    const [contactNumber, setContactNumber] = useState()
-    const [gender, setGender] = useState('')
-    const [specialization, setSpecialization] = useState("")
+  // HOOKS
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [dateOfBirth, setDateOfBirth] = useState()
+  const [contactNumber, setContactNumber] = useState()
+  const [gender, setGender] = useState('')
+  const [specialization, setSpecialization] = useState("")
 
 
-    const {mutate} = useCreateDoctor()
+  const { mutate } = useCreateDoctor()
 
   useEffect(() => {
     if (openDoctorModal) {
@@ -64,11 +71,10 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
       contactNumber: contactNumber,
       email: email
     }
-    console.log(DoctorData);
 
     mutate(DoctorData, {
       onSuccess: (res) => {
-        console.log(res);
+        res.status === 200 && setOpenDoctorModal(false)
         client.invalidateQueries('doctors')
       }
     })
@@ -76,9 +82,8 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
 
   }
 
-
   return (
-    <div onClick={() => setOpenDoctorModal(true)} style={openDoctorModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
+    <div style={openDoctorModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
 
       <div className="add__doctor-modal">
         <h3 className="modal-title">Create New doctor</h3>
@@ -90,7 +95,7 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
             <label htmlFor="lastname">Lastname
               <input onChange={(e) => setLastName(e.target.value)} type="text" id="lastname" placeholder="Enter Doctor Lastname" />
             </label>
-         
+
           </div>
           <div className="form-item">
             <label htmlFor="doctor-phone">Phone
@@ -101,13 +106,13 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
             </label>
           </div>
           <div className="form-item">
-            
+
             <label htmlFor="address">Address
               <input onChange={(e) => setAddress(e.target.value)} type="text" id="address" placeholder="Enter Doctor Address" />
             </label>
             <label htmlFor="doctor-specialization">Specialization
               <Select
-              className="specialization-select"
+                className="specialization-select"
                 id="doctor-specialization"
                 defaultValue="Select Specialization"
                 style={{ width: '100%' }}
@@ -118,8 +123,7 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
           </div>
           <div className="form-item">
             <label htmlFor="license-number">Birthday
-            <input type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
-            {/* <DatePicker  onChange={handleDateChange}/> */}
+              <input type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
             </label>
             <div className="select-gender">
               <h5 className="gender-title">Gender</h5>
@@ -143,4 +147,86 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
   )
 }
 
-export default Container
+// --- ADD A NEW USER MODAL ---
+export const AddUserModal = ({ openUserModal, setOpenUserModal }) => {
+  const [userFirstname, setUserFirstname] = useState('')
+  const [userLastname, setUserLastname] = useState('')
+  const [userEmail, setUserEmail] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+  const [userBirthday, setUserBirthday] = useState('')
+
+  useEffect(() => {
+    openUserModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
+  }, [openUserModal])
+
+  const { mutate } = useCreateUser()
+  const handleCreateUser = (e) => {
+    e.preventDefault()
+    const UserData = {
+      firstname: userFirstname,
+      lastname: userLastname,
+      email: userEmail,
+      password: userPassword,
+      dateOfBirth: new Date(userBirthday).toISOString()
+    }
+    mutate(UserData, {
+      onSuccess: (res) => {
+        console.log(res);
+      }
+    })
+
+  }
+
+
+  return (
+    <div style={openUserModal ? { display: 'flex' } : { display: 'none' }} className="modal-overlay">
+
+      <div className="add__user-modal">
+        <h3 className="modal-title">Create New User</h3>
+        <form onSubmit={handleCreateUser} className="modal-form">
+          <div className="form-item">
+            <label htmlFor="user-name">Firstname
+              <input onChange={(e) => setUserFirstname(e.target.value)} type="text" id="user-name" placeholder="Enter User Firstname" />
+            </label>
+            <label htmlFor="lastname">Lastname
+              <input onChange={(e) => setUserLastname(e.target.value)} type="text" id="lastname" placeholder="Enter User Lastname" />
+            </label>
+          </div>
+          <div className="form-item">
+            <label htmlFor="license-number">Birthday
+              <input onChange={(e) => setUserBirthday(e.target.value)} type="date" />
+            </label>
+            <label htmlFor="user-email">Email
+              <input onChange={(e) => setUserEmail(e.target.value)} type="email" id="user-email" placeholder="Enter User Email" />
+            </label>
+          </div>
+
+          <div className="form-item password-item">
+            <label htmlFor="user-password">Password
+              <input onChange={(e) => setUserPassword(e.target.value)} type="password" id="user-password" placeholder="Enter User Password" />
+            </label>
+          </div>
+          <div className="form__action-btns">
+            <button type="button" onClick={() => setOpenUserModal(!openUserModal)} className="cancel-btn">Cancel</button>
+            <button type="submit" className="create-btn">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+
+// --- UPDATE USER MODAL
+
+export const UpdateUserModal = ({updateUserModal, setUpdateUserModal}) => {
+  return (
+    <div style={updateUserModal ? {display: 'flex'} : {display: 'none'}} className="update__modal-overlay">
+
+      <div className="update__user-modal">
+
+      </div>
+    </div>
+  )
+}
+

@@ -7,7 +7,7 @@ import { useUpdateUser } from '../../../../service/mutation/useUpdateUser'
 import { toast } from 'react-toastify'
 import { PlusOutlined } from '@ant-design/icons';
 import { UploadOutlined } from '@ant-design/icons';
-
+import { client } from '../../../../service/QueryClient'
 
 const UserCard = ({ userItem }) => {
 
@@ -61,6 +61,7 @@ const UserCard = ({ userItem }) => {
         mutateDelete(userId, {
             onSuccess: (res) => {
                 res.statusCode === 200 && setDeleteModal(false)
+                client.invalidateQueries({ queryKey: ['get-users'] })
             }
         })
     }
@@ -89,36 +90,16 @@ const UserCard = ({ userItem }) => {
     // --- Update User Function ---
     const handleUpdateUser = (e) => {
         e.preventDefault()
-        // const updatedUser = {
-        //     Id: currentUser?.id,
-        //     Firstname: updatingFirstname,
-        //     Lastname: updatingLastname,
-        //     DateOfBirth: new Date(updatingBirthday).toISOString(),
-        //     ImagePath: 'http'
-        // }
-        // mutateUpdate(updatedUser, {
-        //     onSuccess: (res) => {
-        //         if (res.status === 200) {
-        //             setUpdateUserModal(false)
-        //             toast.success('User updated successfully', {
-        //                 position: 'top-right',
-        //                 autoClose: 3000,
-        //                 // progress: 'undefined'
-        //             })
-        //         }
-        //         console.log(res);
-        //     }
-        // })
-
+   
 
         const formData = new FormData();
         formData.append('Id', currentUser?.id);
         formData.append('Firstname', updatingFirstname);
         formData.append('Lastname', updatingLastname);
         formData.append('DateOfBirth', new Date(updatingBirthday && updatingBirthday).toISOString());
-        formData.append('ImagePath', updatePhoto)
+        formData.append('ImagePath', updatePhoto || null)
 
-
+        console.log(formData);
 
         fetch('http://45.138.158.240:4040/api/users/update', {
             method: 'PUT',

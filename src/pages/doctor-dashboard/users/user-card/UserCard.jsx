@@ -1,29 +1,36 @@
 import { useEffect, useRef, useState } from 'react'
 import './UserCard.scss'
-import { Button, Divider, Modal,notification, Space } from 'antd'
+import { Button, Divider, Modal, notification, message, Upload, Image } from 'antd'
 import { useDeleteUser } from '../../../../service/mutation/useDeleteUser'
 import { UpdateUserModal } from '../../../../utils/Utils'
 import { useUpdateUser } from '../../../../service/mutation/useUpdateUser'
 import { toast } from 'react-toastify'
+import { PlusOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
+
 
 const UserCard = ({ userItem }) => {
-    const [deleteModal, setDeleteModal] = useState(false)
+
+    const token = localStorage.getItem('token')
+
+    // --- STATE HOOKS ---
+    const clickOutside = useRef()
+    const [userId, setUserId] = useState('')
+    const [imageList, setImageList] = useState([])
     const [openAction, setOpenAction] = useState(false)
-    const [updateUpdateModal, setUpdateUserModal] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
-    const [updatingFirstname, setUpdatingFirstname] = useState(currentUser?.firstname)
+    const [previewImage, setPreviewImage] = useState('')
+    const [deleteModal, setDeleteModal] = useState(false)
+    const [previewOpen, setPreviewOpen] = useState(false)
     const [updatingBirthday, setUpdatingBirthday] = useState('')
     const [updatingLastname, setUpdatingLastname] = useState('')
-    const [userId, setUserId] = useState('')
+    const [updatePhoto, setUpdatePhoto] = useState(null)
+    const [photoUrl, setPhotourl] = useState(null)
 
-    const [success, successContext] = notification.useNotification()
+    const [updateUpdateModal, setUpdateUserModal] = useState(false)
+    const [updatingFirstname, setUpdatingFirstname] = useState(currentUser?.firstname)
 
-
-    const openSuccessNotification = (placement) => {
-        success.info({
-            message: 'User updated successfully'
-        })
-    }
+    console.log(imageList);
 
     useEffect(() => {
         setUpdatingFirstname(currentUser?.firstname)
@@ -31,15 +38,10 @@ const UserCard = ({ userItem }) => {
         setUpdatingBirthday(currentUser?.dateOfBirth)
     }, [currentUser])
 
-    console.log(updatingFirstname);
-
-
+    // Using Queries
     const { mutate: mutateDelete } = useDeleteUser()
-    const {mutate: mutateUpdate} = useUpdateUser()
-   
-    
+    const { mutate: mutateUpdate } = useUpdateUser()
 
-    const clickOutside = useRef()
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -54,6 +56,7 @@ const UserCard = ({ userItem }) => {
     }, []);
 
 
+    // --- Delete User Function ---
     const handleDeleteUser = () => {
         mutateDelete(userId, {
             onSuccess: (res) => {
@@ -62,34 +65,100 @@ const UserCard = ({ userItem }) => {
         })
     }
 
-
     useEffect(() => {
         deleteModal || updateUpdateModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
     }, [deleteModal, updateUpdateModal])
 
 
+
+
+
+    const handleUploadPhoto = (e) => {
+        const file = e.target.files[0]
+        if (file) {
+            const fileReader = new FileReader()
+            fileReader.onload = (e) => {
+                const content = e.target.result
+                setUpdatePhoto(content)
+                setPhotourl(content)
+            }
+            fileReader.readAsDataURL(file)
+        }
+    }
+
+    // --- Update User Function ---
     const handleUpdateUser = (e) => {
         e.preventDefault()
-        const updatedUser = {
-            id: currentUser?.id,
-            firstname: updatingFirstname,
-            lastname: updatingLastname,
-            dateOfBirth: new Date(updatingBirthday).toISOString()
-        }
-        mutateUpdate(updatedUser, {
-            onSuccess:(res) =>{
-                if(res.status === 200){
-                     setUpdateUserModal(false)
-                    toast.success('User updated successfully',{
-                        position: 'top-right',
-                        autoClose: 3000,
-                        // progress: 'undefined'
-                    })
-                } 
-                    console.log(res);
-            }
+        // const updatedUser = {
+        //     Id: currentUser?.id,
+        //     Firstname: updatingFirstname,
+        //     Lastname: updatingLastname,
+        //     DateOfBirth: new Date(updatingBirthday).toISOString(),
+        //     ImagePath: 'http'
+        // }
+        // mutateUpdate(updatedUser, {
+        //     onSuccess: (res) => {
+        //         if (res.status === 200) {
+        //             setUpdateUserModal(false)
+        //             toast.success('User updated successfully', {
+        //                 position: 'top-right',
+        //                 autoClose: 3000,
+        //                 // progress: 'undefined'
+        //             })
+        //         }
+        //         console.log(res);
+        //     }
+        // })
+
+
+        const formData = new FormData();
+        formData.append('Id', currentUser?.id);
+        formData.append('Firstname', updatingFirstname);
+        formData.append('Lastname', updatingLastname);
+        formData.append('DateOfBirth', new Date(updatingBirthday && updatingBirthday).toISOString());
+        formData.append('ImagePath', updatePhoto)
+
+
+
+        fetch('http://45.138.158.240:4040/api/users/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
         })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
+
     }
+
+    // ---- Upload Image ----
+    const getBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+    };
+
+    const handleChange = ({ imageList: newFileList }) => setImageList(newFileList);
+
+    const uploadButton = (
+        <button style={{ border: 0, background: 'none', }} type="button">
+            <PlusOutlined />
+            <div style={{ marginTop: 8, }}  > Upload Photo </div>
+        </button>
+    );
 
     return (
         <>
@@ -122,7 +191,13 @@ const UserCard = ({ userItem }) => {
             </div>
             <Modal open={updateUpdateModal} title={<h5 className='update-subtitle'>Update</h5>} onCancel={() => setUpdateUserModal(false)} okType='none' okText={<Button className='update-btn' onClick={handleUpdateUser}>Update</Button>} className='update__user-modal'>
                 <Divider />
-                <form  className='update-form'>
+                <form className='update-form'>
+                   <div className="form-header">
+                    {
+                        photoUrl ? <img src={photoUrl } />
+                        : <h4 className='user-name'>{currentUser?.firstname[0]}</h4>
+                    }
+                   </div>
                     <label className='update__form-item' htmlFor="firstname">Firstname
                         <input onChange={(e) => setUpdatingFirstname(e.target.value)} type="text" id='firstname' value={updatingFirstname} />
                     </label>
@@ -132,6 +207,10 @@ const UserCard = ({ userItem }) => {
                     <label className='update__form-item' htmlFor="date">Birthday
                         <input onChange={(e) => setUpdatingBirthday(e.target.value)} type="date" id='date' value={updatingBirthday} />
                     </label>
+                    <label className='update__form-item' htmlFor="photo">Profile Photo
+                        <input onChange={handleUploadPhoto} type="file" id='photo' />
+                    </label>
+
                 </form>
             </Modal>
 

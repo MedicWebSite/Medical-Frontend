@@ -114,6 +114,37 @@
     .update-subtitle{
         font-size: 20px;
     }
+    .form-header{
+        width: 100%;
+        text-align: center;
+        img{
+            width: 80px !important;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .user-name{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color:var(--primary-light-color);
+            border-radius: 50%;
+            width: 60px;
+            aspect-ratio: 1/1;
+            font-size: 24px;
+            font-weight: 500;
+            margin: auto;
+            color: var(--light-color);
+        }
+    }
+    .upload-image{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin-top: 0 !important;
+    }
     .update-btn{
         background-color: var(--primary-light-color) !important;
         color: var(--light-color) !important;

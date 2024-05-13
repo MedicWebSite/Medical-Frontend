@@ -123,7 +123,7 @@ const Doctors = () => {
                         placeholder="Search Doctor..."
                         allowClear
                         className='search-form'
-                        enterButton="Search"
+                        enterButton
                         size="middle"
 
                         onChange={(e) => setInputValue(e.target.value)}
@@ -136,7 +136,7 @@ const Doctors = () => {
                     options={specializationData}
                     size='middle'
                 />
-                
+
             </div>
             <Table objectKeys={objectKey} columnsData={columns} AllDoctorsList={searchedData || orderedData} />
             <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />

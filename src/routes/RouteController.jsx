@@ -19,6 +19,7 @@ import Doctors from '../pages/doctor-dashboard/doctors/Doctors'
 import Patients from '../pages/doctor-dashboard/patients/Patients'
 import Appointments from '../pages/doctor-dashboard/appointments/Appointments'
 import Users from '../pages/doctor-dashboard/users/Users'
+import ServicePage from '../pages/service-page/ServicePage'
 
 
 const RouteController = () => {
@@ -46,6 +47,8 @@ const RouteController = () => {
         <Route path='appointments' element={<Appointments />} />
         <Route path='users' element={<Users />} />
       </Route>
+
+      <Route path='service/:id' element={<ServicePage/>}/>
     </Routes>
   )
 }

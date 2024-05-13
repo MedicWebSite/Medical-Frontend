@@ -14,14 +14,14 @@ const MenuData = [
     icon: "keyboard_arrow_down",
     route_link: 'services',
     menu_items: [
-      { item_name: "Angioplasty Services", link: "https://example.com/primary-care" },
-      { item_name: "Cardiology Services", link: "https://example.com/specialist-consultations" },
-      { item_name: "Dental Services", link: "https://example.com/emergency-care" },
-      { item_name: "Endocrinology Services", link: "https://example.com/surgical-procedures" },
-      { item_name: "Eye Care Services", link: "https://example.com/diagnostic-imaging" },
-      { item_name: "Neurology Services", link: "https://example.com/laboratory-tests" },
-      { item_name: "Physical therapy", link: "https://example.com/physical-therapy" },
-      { item_name: "RMI Services", link: "https://example.com/maternity-care" },
+      { item_name: "Angioplasty Services", link: "service/angioplasty" },
+      { item_name: "Cardiology Services", link: "service/cardiology" },
+      { item_name: "Dental Services", link: "service/dental" },
+      { item_name: "Endocrinology Services", link: "service/endocrinology" },
+      { item_name: "Eye Care Services", link: "service/eye" },
+      { item_name: "Neurology Services", link: "service/neurology" },
+      { item_name: "Physical therapy", link: "service/physical" },
+      { item_name: "RMI Services", link: "service/rmi" },
     ]
   },
 
@@ -87,7 +87,7 @@ const Nav = () => {
                   <div className="menu__dropdown-list">
                     {
                       menu_item.menu_items?.map((item, index) =>
-                        <Link className="item-link" key={index}>{item.item_name}</Link>
+                        <NavLink to={item.link} className={({ isActive }) => isActive ? "item-link item-link__active" : "item-link"} key={index}>{item.item_name}</NavLink>
                       )
                     }
                   </div>

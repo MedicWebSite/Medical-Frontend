@@ -8,11 +8,13 @@ nav {
     top: 0;
     background-color: var(--light-color) !important;
 }
+
 .nav-fixed {
     position: fixed;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .nav-wrapper {
     position: relative;
     width: 100%;
@@ -22,6 +24,7 @@ nav {
     justify-content: space-between;
     column-gap: 2.5rem;
 }
+
 .nav-logo {
     text-decoration: none;
     flex: 1;
@@ -31,7 +34,7 @@ nav {
     }
 }
 
-.nav__search-form{
+.nav__search-form {
     display: flex;
     align-items: center;
     max-width: 320px;
@@ -41,7 +44,7 @@ nav {
     background-color: var(--primary-light-color);
     width: 100%;
     border: 2px solid var(--primary-light-color);
-    input{
+    input {
         width: 100%;
         height: 100%;
         border: none;
@@ -50,7 +53,7 @@ nav {
         text-indent: 15px;
         font-weight: 500;
     }
-    span{
+    span {
         height: 100%;
         display: flex;
         font-size: 22px;
@@ -90,6 +93,7 @@ nav {
         color: var(--secondary-light-color);
     }
 }
+
 .hamburger-btn {
     display: none;
     background-color: var(--primary-light-color);
@@ -98,6 +102,7 @@ nav {
     color: var(--light-color);
     font-size: 30px;
 }
+
 .menu__dropdown-list {
     display: flex;
     display: none;
@@ -114,20 +119,23 @@ nav {
         font-size: 15px;
         font-weight: 500;
         color: var(--secondary-light-color);
-        transition: 0.2s;
+        transition: 0.3s;
         padding: 13px 30px 13px 20px;
         &:hover {
             background-color: var(--primary-dark-color);
             color: var(--light-color);
         }
+        &__active {
+            background-color: var(--primary-dark-color);
+            color: #fff;
+        }
     }
 }
 
-.nav-menu > .menu-item:hover > .menu__dropdown-list {
+.nav-menu>.menu-item:hover>.menu__dropdown-list {
     display: flex;
     z-index: 50 !important;
 }
-
 
 .authorization-action {
     .user-icon {
@@ -153,6 +161,7 @@ nav {
         }
     }
 }
+
 .appointment-link {
     background-color: var(--primary-light-color);
     padding: 12px 15px;
@@ -200,7 +209,7 @@ nav {
     }
 }
 
-.responsive__menu-wrapper > .menu-item:hover > .item-subitem {
+.responsive__menu-wrapper>.menu-item:hover>.item-subitem {
     display: flex;
 }
 
@@ -296,14 +305,11 @@ nav {
             font-size: 25px;
         }
     }
-
-   
-    .responsive-auth{
-
-    .nav-action {
-        display: none;
+    .responsive-auth {
+        .nav-action {
+            display: none;
+        }
     }
-  }
     .hamburger-btn {
         padding: 6px 10px;
         font-size: 25px;
@@ -316,7 +322,6 @@ nav {
 @media only screen and (max-width: 396px) {
     .responsive-auth {
         padding: 4px 10px 5px 6px;
-
         strong {
             font-size: 15px;
         }
@@ -326,6 +331,7 @@ nav {
         }
     }
 }
+
 @media only screen and (max-width: 366px) {
     .nav-logo {
         h1 {
@@ -335,7 +341,6 @@ nav {
     .responsive-auth {
         font-size: 14px;
         padding: 3px 10px 3px 6px;
-
         span {
             font-size: 22px;
         }

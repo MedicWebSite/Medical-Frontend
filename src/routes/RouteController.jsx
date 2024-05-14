@@ -54,3 +54,4 @@ const RouteController = () => {
 }
 
 export default RouteController
+

@@ -74,8 +74,9 @@ export const AddDoctorModal = ({ openDoctorModal, setOpenDoctorModal }) => {
 
     mutate(DoctorData, {
       onSuccess: (res) => {
+        console.log(res);
         res.status === 200 && setOpenDoctorModal(false)
-        client.invalidateQueries('doctors')
+        client.invalidateQueries({queryKey: ['get-doctors']})
       }
     })
 

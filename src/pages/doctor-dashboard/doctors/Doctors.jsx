@@ -4,19 +4,13 @@ import ApiInstance from '../../../api'
 import { AddDoctorModal } from '../../../utils/Utils';
 import Table from '../../../components/table/Table';
 import { Select, Input } from 'antd'
+import { useGetDoctors } from '../../../service/query/useGetDoctors';
 const { Search } = Input;
 
-const columns = [
-    { title: 'Firstname', dataIndex: 'firstName', },
-    { title: 'Lastname', dataIndex: 'lastName', },
-    { title: 'Number', dataIndex: 'contactNumber' },
-    { title: 'Birthday', dataIndex: 'dateOfBirth' },
-    { title: 'Address', dataIndex: 'address', },
-    { title: 'Action', dataIndex: 'action' },
-];
+
 
 const specializationData = [
-    { "value": "Anesthesiology", "label": "Anesthesiology" },
+    {"value": '', "label": 'All Specialization'},
     { "value": "Cardiology", "label": "Cardiology" },
     { "value": "Dermatology", "label": "Dermatology" },
     { "value": "EmergencyMedicine", "label": "Emergency Medicine" },
@@ -25,11 +19,9 @@ const specializationData = [
     { "value": "Gastroenterology", "label": "Gastroenterology" },
     { "value": "Geriatrics", "label": "Geriatrics" },
     { "value": "Hematology", "label": "Hematology" },
-    { "value": "InfectiousDisease", "label": "Infectious Disease" },
     { "value": "InternalMedicine", "label": "Internal Medicine" },
     { "value": "Nephrology", "label": "Nephrology" },
     { "value": "Neurology", "label": "Neurology" },
-    { "value": "ObstetricsGynecology", "label": "Obstetrics and Gynecology" },
     { "value": "Oncology", "label": "Oncology" },
     { "value": "Ophthalmology", "label": "Ophthalmology" },
     { "value": "Orthopedics", "label": "Orthopedics" },
@@ -62,18 +54,17 @@ for (let i = 0; i < 46; i++) {
 
 
 const Doctors = () => {
-    const token = localStorage.getItem('token') && localStorage.getItem('token')
     // HOOKS
-    const [doctorsList, setDoctorsList] = useState([])
     const [objectKey, setObjectKey] = useState(null)
     const [inputValue, setInputValue] = useState('')
     const [orderedValue, setOrderedValue] = useState('')
     const [openDoctorModal, setOpenDoctorModal] = useState(false)
 
+    const { data: doctorsList } = useGetDoctors()
 
     // Get Object Keys
     useEffect(() => {
-        const allKeys = doctorsList.reduce((keys, doctor) => {
+        const allKeys = doctorsList?.data.reduce((keys, doctor) => {
             return keys.concat(Object.keys(doctor))
         }, [])
         const uniqueKeys = [...new Set(allKeys)]
@@ -81,32 +72,29 @@ const Doctors = () => {
     }, [doctorsList])
 
     //  Render Doctors List from Array
-    useEffect(() => {
-        async function GetDoctors() {
-            try {
-
-                const response = await ApiInstance('/doctors/get-all', {
-                    headers: {
-                        'Authorization': token && `Bearer ${token}`
-                    }
-                })
-
-                setDoctorsList(response?.data?.data)
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-        GetDoctors()
-    }, [])
-
     const handleOrder = (value) => {
         setOrderedValue(value)
     };
 
-    const searchedData = doctorsList.filter(doctor => doctor?.firstName?.toLowerCase().includes(inputValue.toLowerCase()))
-    const orderedData = doctorsList.filter(doctor => doctor?.specialization.toLowerCase() === orderedValue.toLowerCase())
-
+    const [DoctorList, setDoctorList] = useState([])
+    
+    
+    
+    useEffect(() => {
+        if(inputValue.length > 0){
+            const searchedData = doctorsList?.data?.filter(doctor => doctor?.firstName?.toLowerCase().includes(inputValue?.toLowerCase()))
+            setDoctorList(searchedData)
+        }
+        else if(orderedValue ){
+            const orderedData = doctorsList?.data?.filter(doctor => doctor?.specialization?.toLowerCase() === orderedValue?.toLowerCase())
+            setDoctorList(orderedData)
+        }
+        else{
+            setDoctorList(doctorsList?.data)
+        }
+    }, [inputValue, orderedValue, doctorsList?.data])
+  
+    console.log(DoctorList);
     return (
         <div className='doctors-content'>
             <div className="doctors__content-navigation">
@@ -138,8 +126,8 @@ const Doctors = () => {
                 />
 
             </div>
-            <Table objectKeys={objectKey} columnsData={columns} AllDoctorsList={searchedData || orderedData} />
-            <AddDoctorModal openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
+            <Table objectKeys={objectKey} inputValue={inputValue} orderedValue={orderedValue} DoctorList={DoctorList} />
+            <AddDoctorModal DoctorList={doctorsList?.data} openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
         </div>
     )
 }

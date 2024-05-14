@@ -12,7 +12,6 @@ const DoctorTr = ({ doctorItem }) => {
   const [doctorDetail, setDoctorDetail] = useState(null)
   const [randomYear, setRandomYear] = useState(Math.floor(Math.random() * 15))
 
-  console.log(doctorDetail);
 
   const { mutate } = useDeleteDoctor()
   const handleDelete = (e) => {

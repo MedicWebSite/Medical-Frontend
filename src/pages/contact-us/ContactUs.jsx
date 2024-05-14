@@ -74,7 +74,7 @@ const ContactUs = () => {
 
             </Container>
             <Iframe
-                url="https://maps.google.com/maps?q=NajotTalim%20Dates%10Products&amp;t=&amp;z=12&amp;output=embed"
+                url="https://maps.google.com/maps?q=Tashkent%20Dates%10Products&amp;t=&amp;z=12&amp;output=embed"
                 allowFullScreen
                 frameBorder="0"
                 id='location'

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Hero from '../../components/hero/Hero'
-import Services from '../../components/services/Services'
-import Portfolio from '../../components/portfolio/Portfolio'
-import Doctors from '../../components/doctors/Doctors'
 import Patient from '../../components/patient/Patient'
 import Statistics from '../../statistics/Statistics'
+import MeetTeam from '../../components/meet-team/MeetTeam'
+import HomeAppointment from '../../components/home-appointment/HomeAppointment'
 
 const Home = () => {
 
@@ -29,9 +28,8 @@ const Home = () => {
     <div>
       <Hero/>
       <Statistics/>
-      <Services />
-      <Portfolio />
-      <Doctors/>
+      <MeetTeam/>
+      <HomeAppointment/>
       <Patient/>
       <span onClick={handeScrollTop} style={backTopScroll > 470 ? {transform: 'translateY(0)'} : {}}  className="material-symbols-outlined back__top">arrow_upward</span>
     </div>

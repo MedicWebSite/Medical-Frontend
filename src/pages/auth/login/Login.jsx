@@ -30,6 +30,8 @@ const Login = () => {
         mutate(values, {
             onSuccess: (res) => {
                 localStorage.setItem('token', res?.data)
+                console.log(res);
+                
                 const user = jwtDecode(res?.data)
                 console.log(jwtDecode(res?.data));
                 localStorage.setItem('user', JSON.stringify(user))

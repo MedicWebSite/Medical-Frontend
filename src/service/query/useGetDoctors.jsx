@@ -5,7 +5,7 @@ export const useGetDoctors = () => {
     return useQuery({
         queryKey: ["get-doctors"],
         queryFn: () => {
-            return ApiInstance.get("/doctors/get-all/").then((res) => res.data);
+            return ApiInstance.get("/doctors/get-all").then((res) => res.data);
         },
     });
 };

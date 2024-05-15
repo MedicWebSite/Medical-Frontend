@@ -1,11 +1,8 @@
 import { Skeleton } from 'antd'
 import './Table.scss'
 import DoctorTr from './doctor-tr/DoctorTr'
-import { useState } from 'react'
 
-const Table = ({ objectKeys, DoctorList }) => {
-
-
+const Table = ({ objectKeys, DoctorList, rowPage }) => {
     return (
         <>
             {
@@ -23,7 +20,7 @@ const Table = ({ objectKeys, DoctorList }) => {
                         </thead>
                         <tbody>
                             {
-                                DoctorList?.map((doctorItem, index) =>
+                                DoctorList?.slice(0, rowPage).map((doctorItem, index) =>
                                     <DoctorTr doctorItem={doctorItem} key={index} />
                                 )
                             }

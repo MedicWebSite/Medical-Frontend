@@ -32,7 +32,7 @@ const Register = () => {
         formdata.append('password', values.password)
         formdata.append('dateOfBirth', new Date(values.dateOfBirth).toISOString())
         mutate(formdata, {
-            onSuccess: () => navigate('/auth/login'),
+            onSuccess: (res) => navigate('/auth/login'),
             onError: (error) => console.log(error)
         })
     }

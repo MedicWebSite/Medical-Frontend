@@ -22,7 +22,7 @@ const AnonouncementBar = () => {
             <strong>Tashkent</strong>
           </div>
           <div className="top-actions">
-            <div className="number-text">+998 (33) 500-31-17</div>
+            <a href='tel:+998335003117' className="number-text">+998 (33) 500-31-17</a>
             <div className="work-time">
               <span className='material-symbols-outlined'>schedule</span>
               <p>Monday - Sunday 08:00 - 19:00</p>

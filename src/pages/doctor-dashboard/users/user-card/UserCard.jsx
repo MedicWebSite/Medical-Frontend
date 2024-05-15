@@ -18,17 +18,17 @@ const UserCard = ({ userItem }) => {
     // --- STATE HOOKS ---
     const clickOutside = useRef()
     const [userId, setUserId] = useState('')
+    const [fileList, setFileList] = useState([])
+    const [photoUrl, setPhotourl] = useState(null)
     const [imageList, setImageList] = useState([])
     const [openAction, setOpenAction] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
+    const [updatePhoto, setUpdatePhoto] = useState(null)
     const [previewImage, setPreviewImage] = useState('')
     const [deleteModal, setDeleteModal] = useState(false)
     const [previewOpen, setPreviewOpen] = useState(false)
     const [updatingBirthday, setUpdatingBirthday] = useState('')
     const [updatingLastname, setUpdatingLastname] = useState('')
-    const [updatePhoto, setUpdatePhoto] = useState(null)
-    const [photoUrl, setPhotourl] = useState(null)
-    const [fileList, setFileList] = useState([]);
     const [updateUpdateModal, setUpdateUserModal] = useState(false)
     const [updatingFirstname, setUpdatingFirstname] = useState(currentUser?.firstname)
 

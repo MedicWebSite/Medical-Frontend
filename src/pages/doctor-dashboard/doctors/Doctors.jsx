@@ -10,7 +10,7 @@ const { Search } = Input;
 
 
 const specializationData = [
-    {"value": '', "label": 'All Specialization'},
+    { "value": '', "label": 'All Specialization' },
     { "value": "Cardiology", "label": "Cardiology" },
     { "value": "Dermatology", "label": "Dermatology" },
     { "value": "EmergencyMedicine", "label": "Emergency Medicine" },
@@ -56,8 +56,10 @@ for (let i = 0; i < 46; i++) {
 const Doctors = () => {
     // HOOKS
     const [objectKey, setObjectKey] = useState(null)
+    const [DoctorList, setDoctorList] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [orderedValue, setOrderedValue] = useState('')
+    const [rowPage, setRowPage] = useState(10)
     const [openDoctorModal, setOpenDoctorModal] = useState(false)
 
     const { data: doctorsList } = useGetDoctors()
@@ -76,25 +78,21 @@ const Doctors = () => {
         setOrderedValue(value)
     };
 
-    const [DoctorList, setDoctorList] = useState([])
-    
-    
     
     useEffect(() => {
-        if(inputValue.length > 0){
+        if (inputValue.length > 0) {
             const searchedData = doctorsList?.data?.filter(doctor => doctor?.firstName?.toLowerCase().includes(inputValue?.toLowerCase()))
             setDoctorList(searchedData)
         }
-        else if(orderedValue ){
+        else if (orderedValue) {
             const orderedData = doctorsList?.data?.filter(doctor => doctor?.specialization?.toLowerCase() === orderedValue?.toLowerCase())
             setDoctorList(orderedData)
         }
-        else{
+        else {
             setDoctorList(doctorsList?.data)
         }
     }, [inputValue, orderedValue, doctorsList?.data])
-  
-    console.log(DoctorList);
+
     return (
         <div className='doctors-content'>
             <div className="doctors__content-navigation">
@@ -106,7 +104,10 @@ const Doctors = () => {
             </div>
             <div className="doctor__content-actions">
 
+
                 <form className='search__form-wrapper'>
+
+
                     <Search
                         placeholder="Search Doctor..."
                         allowClear
@@ -117,6 +118,16 @@ const Doctors = () => {
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </form>
+                <div className="order__page-action">
+
+                    <select className='select-page' onChange={(e) => setRowPage(e.target.value)}>
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={15}>15</option>
+                        <option value={20}>20</option>
+                    </select>
+                    <p> page</p>
+                </div>
                 <Select
                     defaultValue="Select Specialization"
                     className='select-specialization'
@@ -126,7 +137,7 @@ const Doctors = () => {
                 />
 
             </div>
-            <Table objectKeys={objectKey} inputValue={inputValue} orderedValue={orderedValue} DoctorList={DoctorList} />
+            <Table rowPage={rowPage} objectKeys={objectKey} inputValue={inputValue} orderedValue={orderedValue} DoctorList={DoctorList} />
             <AddDoctorModal DoctorList={doctorsList?.data} openDoctorModal={openDoctorModal} setOpenDoctorModal={setOpenDoctorModal} />
         </div>
     )

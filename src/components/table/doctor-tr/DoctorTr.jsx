@@ -3,10 +3,12 @@ import './DoctorTr.scss'
 import { Modal, Button, Divider } from 'antd';
 import { useDeleteDoctor } from '../../../service/mutation/useDeleteDoctor';
 import { client } from '../../../service/QueryClient';
+import { toast } from 'react-toastify';
 
 const DoctorTr = ({ doctorItem }) => {
   const [doctorId, setDoctorId] = useState()
   const [doctorName, setDoctorName] = useState('')
+  const [updateModal, setUpdateModal] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [detailModal, setDetailModal] = useState(false)
   const [doctorDetail, setDoctorDetail] = useState(null)
@@ -18,14 +20,19 @@ const DoctorTr = ({ doctorItem }) => {
     e.preventDefault()
     mutate(doctorId, {
       onSuccess: (res) => {
-        client.invalidateQueries('doctors')
-        res.statusCode === 200 && setIsModalOpen(false)
+        client.invalidateQueries({ queryKey: 'doctors' })
+        if (res.statusCode === 200) {
+          setIsModalOpen(false)
+          toast.success('Doctor Deleted', {
+            autoClose: 2000
+          })
+        }
       }
     })
   };
 
   useEffect(() => {
-    isModalOpen  || detailModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
+    isModalOpen || detailModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
   }, [isModalOpen, detailModal])
 
   return (
@@ -40,14 +47,16 @@ const DoctorTr = ({ doctorItem }) => {
       <td>{doctorItem.email}</td>
       <td className='row-action'>
         <span onClick={() => { setDetailModal(true); setDoctorDetail(doctorItem) }} className='material-symbols-outlined eye-icon'>visibility</span>
-        <span className='material-symbols-outlined edit-icon'>edit</span>
+        <span onClick={() => setUpdateModal(true)} className='material-symbols-outlined edit-icon'>edit</span>
         <span onClick={() => { setIsModalOpen(true); setDoctorId(doctorItem.id); setDoctorName(doctorItem.firstName) }} className='material-symbols-outlined delete-icon'>Delete</span>
       </td>
+      {/* DELETE MODAL */}
       <Modal className='delete-modal' title={<h5 className='modal-subtitle'>Delete Doctor ?</h5>} open={isModalOpen} onOk={handleDelete} okText={<Button className='delete-btn'>Delete</Button>} okType='none' onCancel={() => setIsModalOpen(false)}>
         <span className=' material-symbols-outlined warning-icon'>warning</span>
         <p className='delete-text'>{`Are you sure you want to delete user ${doctorName} `}?</p>
       </Modal>
-      <Modal className='doctor__data-modal' title={<h5 className='modal-subtitle'>Show Doctor Details</h5>} open={detailModal}  onCancel={() => setDetailModal(false)} okType='none' okText=' ' cancelText={' '}  >
+      {/* DETAIL MODAL */}
+      <Modal className='doctor__data-modal' title={<h5 className='modal-subtitle'>Show Doctor Details</h5>} open={detailModal} onCancel={() => setDetailModal(false)} okType='none' okText=' ' cancelText={' '}  >
         <Divider />
         <div className="detail__item-box">
           <div className="detail-item">
@@ -75,6 +84,11 @@ const DoctorTr = ({ doctorItem }) => {
             <p>{randomYear === 0 ? 2 : randomYear}</p>
           </div>
         </div>
+      </Modal>
+
+      {/* UPDATE MODAL */}
+      <Modal className='doctor__update-modal' title={<h5 className='modal-subtitle'>Show Doctor Details</h5>} open={updateModal} onCancel={() => setUpdateModal(false)} okType='none' >
+
       </Modal>
     </tr>
   )

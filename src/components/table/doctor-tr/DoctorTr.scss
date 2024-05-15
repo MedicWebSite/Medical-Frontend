@@ -7,12 +7,13 @@
         max-width: 70px !important;
         white-space: nowrap;
     }
-    td:not(:last-child){
-        overflow-x: auto;
-    }
-    td::-webkit-scrollbar{
-        height: 1px;
-    }
+        td:not(:last-child) {
+            overflow-x: auto;
+        }
+    
+        td::-webkit-scrollbar {
+            height: 1px;
+        }
 }
 .row-action{
     margin-top: 5px;

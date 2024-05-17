@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AnnouncementBar.scss'
 import Container from '../../utils/Utils'
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router-dom';
+import { Select } from 'antd';
 
 const AnonouncementBar = () => {
 
   const userAuth = JSON.parse(localStorage.getItem('user'))
+
+  const [language, setLanguage] = useState('ENGLISH')
+
+  console.log(language);
 
   const { pathname } = useLocation()
   if (pathname.includes("patient")) return null
@@ -17,21 +22,32 @@ const AnonouncementBar = () => {
     <div className='announcement'>
       <Container>
         <div className="announcement-wrapper">
-          <div className="location-item">
-            <p><i><FaLocationDot /></i> City:</p>
-            <strong>Tashkent</strong>
+          <div className="phone-item">
+            <i><FaPhone /></i>
+            <p>Phone:</p>
+            <a className='number-text' href='tel:+998335003117'>+998975152424</a>
           </div>
           <div className="top-actions">
-            <a href='tel:+998335003117' className="number-text">+998 (33) 500-31-17</a>
             <div className="work-time">
               <span className='material-symbols-outlined'>schedule</span>
               <p>Monday - Sunday 08:00 - 19:00</p>
             </div>
-            <div className="languages-action">
-              <button>UZB</button>
-              <button>RUS</button>
-              <button>ENG</button>
-            </div>
+            <Select onChange={(value) => setLanguage(value)} className='select-language' defaultValue={language}
+              options={[
+                {
+                  value: 'english',
+                  label: 'ENGLISH',
+                },
+                {
+                  value: 'ru',
+                  label: 'РУССКИЙ',
+                },
+                {
+                  value: 'uzbek',
+                  label: "O'ZBEK",
+                },
+              ]}
+            />
             {
               userAuth.Role === 'User' ? <Link className='auth-link' to={'/patient'}> <span className='material-symbols-outlined'>account_circle</span> Account</Link>
                 : userAuth.Role === 'Admin' ? <Link className='auth-link' to={'/doctor'}> <span className='material-symbols-outlined'>account_circle</span> Account</Link>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Hero from '../../components/hero/Hero'
 import Patient from '../../components/patient/Patient'
-import Statistics from '../../statistics/Statistics'
+import Statistics from '../../components/statistics/Statistics'
 import MeetTeam from '../../components/meet-team/MeetTeam'
 import HomeAppointment from '../../components/home-appointment/HomeAppointment'
 

@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    AppstoreOutlined,
-    UsergroupAddOutlined, TeamOutlined, CalendarOutlined, UserOutlined
-} from '@ant-design/icons';
+import {    AppstoreOutlined, UsergroupAddOutlined, TeamOutlined, CalendarOutlined, UserOutlined} from '@ant-design/icons';
 import { Button, Layout, Menu, theme, Popover } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'

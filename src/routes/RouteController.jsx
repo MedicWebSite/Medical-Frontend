@@ -20,6 +20,7 @@ import Patients from '../pages/doctor-dashboard/patients/Patients'
 import Appointments from '../pages/doctor-dashboard/appointments/Appointments'
 import Users from '../pages/doctor-dashboard/users/Users'
 import ServicePage from '../pages/service-page/ServicePage'
+import AboutUs from '../pages/about-us/AboutUs'
 
 
 const RouteController = () => {
@@ -27,6 +28,7 @@ const RouteController = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='contact-us' element={<ContactUs />} />
+      <Route path='about-us' element={<AboutUs/>}/>
       <Route path='auth' element={<Auth />} >
         <Route index path='login' element={<Login />} />
         <Route path='register' element={<Register />} />

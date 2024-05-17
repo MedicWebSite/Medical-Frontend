@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useGetBooking } from '../../../service/query/useGetBooking';
 import './Appointments.scss'
 import { Space, Table, Tag } from 'antd';
+import { useGetSingleDoctor } from '../../../service/query/useGetSingleUser';
 
 
 const columns = [
@@ -69,8 +71,22 @@ const data = [
 
 const Appointments = () => {
 
+    // HOOKS
+
+    const [appoitnmentData, setAppointmentData] = useState([])
+
     const {data: bookingsAll} = useGetBooking()
-    console.log(bookingsAll.data);
+    console.log(bookingsAll?.data);
+
+    const [userIds, setUserIds] = useState([])
+
+    useEffect(() => {
+        setUserIds(bookingsAll?.data.map(booking => booking?.id));
+    }, [bookingsAll]); 
+
+    console.log(userIds);
+
+    const {data: singleDoctor} = useGetSingleDoctor()
 
 
     return (

@@ -1,4 +1,4 @@
-import Container from '../utils/Utils'
+import Container from '../../utils/Utils'
 import'./Statistics.scss'
 import CountUp from 'react-countup'
 

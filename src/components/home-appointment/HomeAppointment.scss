@@ -106,12 +106,15 @@
         cursor: pointer;
     }
     .form__book-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 1.4rem;
         width: 100%;
         border-radius: 24px;
-        padding: 1rem 0;
-        background-color: var(--primary-light-color);
-        color: var(--light-color);
+        padding: 1.3rem 0 !important;
+        background-color: var(--primary-light-color) !important;
+        color: var(--light-color) !important;
         font-weight: 600;
         font-size: 15px;
         border: none;

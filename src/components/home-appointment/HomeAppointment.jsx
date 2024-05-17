@@ -3,22 +3,28 @@ import Container from '../../utils/Utils'
 import './HomeAppointment.scss'
 import { useGetDoctors } from '../../service/query/useGetDoctors'
 import { useBookAppointment } from '../../service/mutation/useBookApppointment'
+import { Button } from 'antd'
+import { toast } from 'react-toastify'
 
 
 const HomeAppointment = () => {
   const userData = JSON.parse(localStorage.getItem('user'))
-  console.log(userData);
 
   const { data } = useGetDoctors()
   const { mutate: BookApi } = useBookAppointment()
 
   // HOOKS
+  const [patientName, setPatientName] = useState('')
+  const [patientEmail, setPatientEmail] = useState('')
+  const [patientNumber, setPatientNumber] = useState()
   const [doctorId, setDoctorId] = useState()
   const [FromDate, setFromDate] = useState('')
   const [ToDate, setToDate] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
 
   const handleBooking = (e) => {
+    setIsLoading(true)
     e.preventDefault()
     const BookingData = {
       userId: userData && Number(userData.Id),
@@ -26,12 +32,27 @@ const HomeAppointment = () => {
       from: new Date(FromDate).toISOString(),
       to: new Date(ToDate).toISOString()
     }
-    console.log(BookingData);
     BookApi(BookingData, {
       onSuccess: (res) => {
-        console.log(res);
+        if (res.status === 200) {
+          setTimeout(() => {
+            toast.success('Your message sent successfully', {
+              autoClose: 2000
+            })
+            setIsLoading(false)
+            setPatientName('')
+            setDoctorId('')
+            setPatientNumber('')
+            setPatientEmail('')
+            setFromDate('')
+            setToDate('')
+
+          }, 2000)
+
+        }
       },
-      onError: (error) =>{
+
+      onError: (error) => {
         console.log(error);
       }
     })
@@ -74,10 +95,10 @@ const HomeAppointment = () => {
             </div>
             <form onSubmit={handleBooking} className="appointment-form">
               <h3 className='appointment__form-title'>Make An Appointment</h3>
-              <input type="text" placeholder='Your Name' />
-              <input type="text" placeholder='Email Address' />
-              <input type="number" placeholder='Phone Number' />
-              <select onChange={(e) => setDoctorId(e.target.value)}>
+              <input value={patientName} onChange={(e) => setPatientName(e.target.value)} type="text" placeholder='Your Name' />
+              <input value={patientEmail} onChange={(e) => setPatientEmail(e.target.value)} type="text" placeholder='Email Address' />
+              <input value={patientNumber} onChange={(e) => setPatientNumber(e.target.value)} type="number" placeholder='Phone Number' />
+              <select value={doctorId} onChange={(e) => setDoctorId(e.target.value)}>
                 <option value="">Choose Doctor</option>
                 {
                   data?.data.map(doctor =>
@@ -89,13 +110,14 @@ const HomeAppointment = () => {
               <div className="form-date">
 
                 <label className='form__date-label' htmlFor="from">From
-                  <input type="date" onChange={(e) => setFromDate(e.target.value)} />
+                  <input value={FromDate} type="date" onChange={(e) => setFromDate(e.target.value)} />
                 </label>
                 <label className='form__date-label' htmlFor="to">To
-                  <input type="date" onChange={(e) => setToDate(e.target.value)} />
+                  <input value={ToDate} type="date" onChange={(e) => setToDate(e.target.value)} />
                 </label>
               </div>
-              <button type='submit' className='form__book-btn'>BOOK AN APPOINTMENT</button>
+              <Button onClick={handleBooking} type='submit' className='form__book-btn' loading={isLoading}>BOOK AN APPOINTMENT</Button>
+              {/* <button type='submit' className='form__book-btn'>BOOK AN APPOINTMENT</button> */}
             </form>
           </div>
         </div>

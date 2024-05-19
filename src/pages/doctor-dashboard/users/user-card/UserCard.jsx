@@ -16,11 +16,7 @@ const UserCard = ({ userItem }) => {
     const [currentUser, setCurrentUser] = useState(null)
     const [deleteModal, setDeleteModal] = useState(false)
     const [updateUpdateModal, setUpdateUserModal] = useState(false)
-    useEffect(() => {
-        setUpdatingFirstname(currentUser?.firstname)
-        setUpdatingLastname(currentUser?.lastname)
-        setUpdatingBirthday(currentUser?.dateOfBirth)
-    }, [currentUser])
+
 
     // Using Queries
     const { mutate: mutateDelete } = useDeleteUser()
@@ -55,18 +51,6 @@ const UserCard = ({ userItem }) => {
 
 
 
-    const handleUploadPhoto = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            const fileReader = new FileReader()
-            fileReader.onload = (e) => {
-                const content = e.target.result
-                setUpdatePhoto(content)
-                setPhotourl(content)
-            }
-            fileReader.readAsDataURL(file)
-        }
-    }
 
     // --- Update User Function ---
     const handleUpdateUser = (values) => {
@@ -95,14 +79,6 @@ const UserCard = ({ userItem }) => {
             reader.onload = () => resolve(reader.result);
             reader.onerror = (error) => reject(error);
         });
-
-    const handlePreview = async (file) => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-        setPreviewImage(file.url || file.preview);
-        setPreviewOpen(true);
-    };
 
     return (
         <>

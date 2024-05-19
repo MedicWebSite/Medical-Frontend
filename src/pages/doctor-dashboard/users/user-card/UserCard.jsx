@@ -1,50 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
 import './UserCard.scss'
-import { Button, Divider, Modal, notification, message, Upload, Image, Form, Input, DatePicker } from 'antd'
+import { Button, Divider, Modal, Upload, Form, Input, DatePicker } from 'antd'
 import { useDeleteUser } from '../../../../service/mutation/useDeleteUser'
-import { UpdateUserModal } from '../../../../utils/Utils'
 import { useUpdateUser } from '../../../../service/mutation/useUpdateUser'
-import { toast } from 'react-toastify'
-import { PlusOutlined } from '@ant-design/icons';
-import { UploadOutlined } from '@ant-design/icons';
 import { client } from '../../../../service/QueryClient'
-import { useForm } from 'react-hook-form'
 
 
 const UserCard = ({ userItem }) => {
-    const { register, handleSubmit } = useForm()
-    const token = localStorage.getItem('token')
     const { mutate } = useUpdateUser()
     // --- STATE HOOKS ---
     const clickOutside = useRef()
     const [userId, setUserId] = useState('')
     const [fileList, setFileList] = useState([])
-    const [photoUrl, setPhotourl] = useState(null)
-    const [imageList, setImageList] = useState([])
     const [openAction, setOpenAction] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
-    const [updatePhoto, setUpdatePhoto] = useState(null)
-    const [previewImage, setPreviewImage] = useState('')
     const [deleteModal, setDeleteModal] = useState(false)
-    const [previewOpen, setPreviewOpen] = useState(false)
-    const [updatingBirthday, setUpdatingBirthday] = useState('')
-    const [updatingLastname, setUpdatingLastname] = useState('')
     const [updateUpdateModal, setUpdateUserModal] = useState(false)
-    const [updatingFirstname, setUpdatingFirstname] = useState(currentUser?.firstname)
 
-    console.log(imageList);
-
-    useEffect(() => {
-        setUpdatingFirstname(currentUser?.firstname)
-        setUpdatingLastname(currentUser?.lastname)
-        setUpdatingBirthday(currentUser?.dateOfBirth)
-    }, [currentUser])
 
     // Using Queries
     const { mutate: mutateDelete } = useDeleteUser()
     const { mutate: mutateUpdate } = useUpdateUser()
-
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (clickOutside.current && !clickOutside.current.contains(event.target)) {
@@ -56,7 +32,6 @@ const UserCard = ({ userItem }) => {
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
-
 
     // --- Delete User Function ---
     const handleDeleteUser = () => {
@@ -76,18 +51,6 @@ const UserCard = ({ userItem }) => {
 
 
 
-    const handleUploadPhoto = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            const fileReader = new FileReader()
-            fileReader.onload = (e) => {
-                const content = e.target.result
-                setUpdatePhoto(content)
-                setPhotourl(content)
-            }
-            fileReader.readAsDataURL(file)
-        }
-    }
 
     // --- Update User Function ---
     const handleUpdateUser = (values) => {
@@ -98,24 +61,10 @@ const UserCard = ({ userItem }) => {
         formData.append('DateOfBirth', new Date(values?.dateofbirth).toISOString());
         formData.append('ImagePath', values?.image?.file || null)
         console.log(formData);
-
-        // fetch('http://45.138.158.240:4040/api/users/update', {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data',
-        //         'Authorization': `Bearer ${token}`
-        //     },
-        //     body: formData
-        // })
-        //     .then(response => response.json())
-        //     .then(data => console.log(data))
-        //     .catch(error => console.log(error))
-
-
         mutate(formData, {
             onSuccess: (res) => {
-                // res.statusCode === 200 && setUpdateUserModal(false)
-                // client.invalidateQueries({ queryKey: ['get-users'] })
+                res.status === 200 && setUpdateUserModal(false)
+                client.invalidateQueries({ queryKey: ['get-users'] })
                 console.log(res);
             },
             onError: (error) => console.log(error)
@@ -130,23 +79,6 @@ const UserCard = ({ userItem }) => {
             reader.onload = () => resolve(reader.result);
             reader.onerror = (error) => reject(error);
         });
-
-    const handlePreview = async (file) => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-        setPreviewImage(file.url || file.preview);
-        setPreviewOpen(true);
-    };
-
-    const handleChange = ({ imageList: newFileList }) => setImageList(newFileList);
-
-    const uploadButton = (
-        <button style={{ border: 0, background: 'none', }} type="button">
-            <PlusOutlined />
-            <div style={{ marginTop: 8, }}  > Upload Photo </div>
-        </button>
-    );
 
     return (
         <>
